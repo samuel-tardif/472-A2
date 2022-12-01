@@ -2,8 +2,6 @@
 #Author : Samuel Tardif
 import rushHour as rh
 
-print("hello world")
-
 #Reading from input file
 filename = 'Sample/sample-input.txt'
 lines = []
@@ -26,6 +24,7 @@ print(problems)
 with open('problems.txt', 'w') as f:
     f.write(str(problems))
 
-if rh.isSolution("test"):
-    print("import working")
-
+state = "..A"
+newState = rh.valet(state)
+print(state)
+print(newState)
