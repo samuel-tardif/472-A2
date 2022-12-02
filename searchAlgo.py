@@ -1,5 +1,5 @@
 import rushHour as rh
-
+import time
 
 def heur1(state):
     aPos = state.index('A')
@@ -73,6 +73,16 @@ def searchUCS(name, startState):
 
     #Counter to know how many nodes we explore
     counter = 0
+
+    #Start the clock
+    st = time.time()
+
+    #Print header
+    f = open(solFileName, "a")
+    f.write(startState)
+    f.write("\n\n")
+    f.write()
+    f.close()
 
     while openList != []:
 
@@ -425,4 +435,16 @@ def searchA(name, startState):
 
 
 def returnSolutionPath(solutionNode):
-    return
+    solutionPath = [solutionNode]
+    current = solutionNode
+    while current.prev != "none":
+        current = current.prev
+        solutionPath.append(0, current)
+    return solutionPath
+
+def solutionAsString(solutionPath):
+    solutionString = ""
+    for node in solutionPath:
+        solutionString.append(node.move+", ")
+    return solutionString
+
