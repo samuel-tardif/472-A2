@@ -79,9 +79,20 @@ def searchUCS(name, startState):
 
     #Print header
     f = open(solFileName, "a")
-    f.write(startState)
+    f.write("Initial configuration of the board: "+startState)
     f.write("\n\n")
-    f.write()
+    f.write(startState[0:6]+"\n")
+    f.write(startState[6:12] + "\n")
+    f.write(startState[12:18] + "\n")
+    f.write(startState[18:24] + "\n")
+    f.write(startState[24:30] + "\n")
+    f.write(startState[30:36] + "\n")
+    f.write("\n")
+    f.write("Fuel available to each car: \t")
+    for car in rh.listOfCars(startState):
+        f.write(car+": "+rh.getFuelForCar(car, startState)+", ")
+
+    f.write("\n\n")
     f.close()
 
     while openList != []:
@@ -93,22 +104,37 @@ def searchUCS(name, startState):
         if rh.isSolution(current.state):
             #We found it
             solution = returnSolutionPath(current)
-            print(solution)
+            solutionString = solutionAsString(solution)
+            print(solutionString)
             #TO DO SOLUTION FILE
-            #
-            #
-            #
-            #
-            #
-            #
-            #
-            #
-            #
-            #
+            f = open(solFileName, "a")
+            f.write("Runtime: "+time.time()-st+"\n")
+            f.write("Length of search path: "+counter+"\n")
+            f.write("Length of solution path: " + len(solution)+"\n")
+            f.write("Solution path: "+solutionString+"\n\n")
+            for node in solution:
+                f.write(node.move + "\t" + rh.getFuelForCar(node.move[0],node.state) + "\t" + node.state + "\n")
 
+            #Final state
+            f.write("\n\n")
+            f.write(current.state[0:6] + "\n")
+            f.write(current.state[6:12] + "\n")
+            f.write(current.state[12:18] + "\n")
+            f.write(current.state[18:24] + "\n")
+            f.write(current.state[24:30] + "\n")
+            f.write(current.state[30:36] + "\n")
+            f.write("\n")
+
+            #TO DO ADD TO RESULT FILE
+            #
+            #
+            #
+            #
+            #
+            #
 
             #Do this so we stop looking
-            return "Solution found: "+solution
+            return "Solution found: " + solution
         else:
             #Children of current
             children = []
@@ -175,13 +201,11 @@ def searchUCS(name, startState):
 
     #NO solution was found
     #TO DO - Print solution file with no sol
-    #
-    #
-    #
-    #
-    #
-    #
-    #
+    
+    f.write("Runtime: " + time.time() - st + "\n")
+    f.write("Length of search path: " + counter + "\n")
+    f.write("No solution found")
+
 
     print("no solution")
     return "No solution"
