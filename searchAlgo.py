@@ -124,6 +124,7 @@ def searchUCS(name, startState):
             f.write(current.state[24:30] + "\n")
             f.write(current.state[30:36] + "\n")
             f.write("\n")
+            f.close()
 
             #TO DO ADD TO RESULT FILE
             #
@@ -201,7 +202,7 @@ def searchUCS(name, startState):
 
     #NO solution was found
     #TO DO - Print solution file with no sol
-    
+
     f.write("Runtime: " + time.time() - st + "\n")
     f.write("Length of search path: " + counter + "\n")
     f.write("No solution found")

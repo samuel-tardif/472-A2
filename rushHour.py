@@ -1,15 +1,15 @@
 import random
 
 def isSolution(state):
-    if state[17] == 'A':
+    if 'A' not in state:
         return True
     else:
         return False
 
 
 def valet(state):
-    if state[2] != '.':
-        toReplace = state[2]
+    if state[17] != '.':
+        toReplace = state[17]
         state = state.replace(toReplace, '.')
     return state
 
@@ -28,6 +28,7 @@ def moveCarRight(car, state, dist):
         state[carPos+i] = '.'
         state[carPos+carLength+i]=car
     state = updateCarFuel(car, state, dist)
+    state = valet(state)
     return state
 
 
@@ -38,6 +39,7 @@ def moveCarLeft(car, state, dist):
         state[carPos+carLength - i] = '.'
         state[carPos-i] = car
     state = updateCarFuel(car, state, dist)
+    state = valet(state)
     return state
 
 
@@ -48,6 +50,7 @@ def moveCarDown(car, state, dist):
         state[carPos+i*6] = '.'
         state[carPos+carLength*6+i*6] = car
     state = updateCarFuel(car, state, dist)
+    state = valet(state)
     return state
 
 
@@ -58,6 +61,7 @@ def moveCarUp(car, state, dist):
         state[carPos+carLength*6-i*6] = '.'
         state[carPos-i*6] = car
     state = updateCarFuel(car, state, dist)
+    state = valet(state)
     return state
 
 
