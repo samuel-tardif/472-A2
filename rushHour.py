@@ -1,4 +1,4 @@
-
+import random
 
 def isSolution(state):
     if state[17] == 'A':
@@ -27,7 +27,7 @@ def moveCarRight(car, state, dist):
     for i in range(0, dist):
         state[carPos+i] = '.'
         state[carPos+carLength+i]=car
-    state = updateCarFuel(car, state ,dist)
+    state = updateCarFuel(car, state, dist)
     return state
 
 
@@ -37,7 +37,7 @@ def moveCarLeft(car, state, dist):
     for i in range(0, dist):
         state[carPos+carLength - i] = '.'
         state[carPos-i] = car
-    state = updateCarFuel(car, state ,dist)
+    state = updateCarFuel(car, state, dist)
     return state
 
 
@@ -47,7 +47,7 @@ def moveCarDown(car, state, dist):
     for i in range(0, dist):
         state[carPos+i*6] = '.'
         state[carPos+carLength*6+i*6] = car
-    state = updateCarFuel(car, state ,dist)
+    state = updateCarFuel(car, state, dist)
     return state
 
 
@@ -57,7 +57,7 @@ def moveCarUp(car, state, dist):
     for i in range(0, dist):
         state[carPos+carLength*6-i*6] = '.'
         state[carPos-i*6] = car
-    state = updateCarFuel(car, state ,dist)
+    state = updateCarFuel(car, state, dist)
     return state
 
 
@@ -197,3 +197,67 @@ def printState(state):
         29] + "\n")
     print("1\t|\t" + state[30] + "\t" + state[31] + "\t" + state[32] + "\t" + state[33] + "\t" + state[34] + "\t" + state[
         35] + "\n")
+
+
+def generateRandomProblem():
+    state = ["."]*36
+    #add spacing for fuel
+    state.append("  ")
+    #Place ambulance
+    starting_spot = random.choice([0,1,2])
+    state[12+starting_spot]='A'
+    state[13+starting_spot]='A'
+
+    #Decide what cars will be placed
+    possible_cars = ['B','C','D','E','F','G','H','I','J','K']
+    for car in possible_cars:
+        if coinFlip():
+            #Place cars to be placed
+            count = 0
+            isCarPlaced = False
+            while not isCarPlaced & count < 10:
+
+                count+=1
+
+                isCarVertical = coinFlip()
+                size = random.choice([2,3])
+
+                #Choose spot
+                row = random.randint(0,5)
+                column = random.randint(0,5)
+
+                #Check if fits
+                is_placeable = True
+                if state[row*6+column] == '.':
+                    if isCarVertical:
+                        if (row+size)*6+column < 36:
+                            for i in range(1,size-1):
+                                if state[(row+i)*6+column] != '.':
+                                    is_placeable = False
+                        else:
+                            is_placeable = False
+                    else:
+                        if column%6+size > 6 :
+                            for i in range(1,size-1):
+                                if state[(row)*6+column+i] != '.':
+                                    is_placeable = False
+                        else:
+                            is_placeable = False
+                else:
+                    is_placeable = False
+
+                #If it can be placed, do so
+                    #Places
+                    for i in range(0,size):
+                        if isCarVertical:
+                            state[(row+i)*6+column]=car
+                        else:
+                            state[row * 6 + column + i] = car
+                    #Gas info
+                    if coinFlip():
+                        state.append(car)
+                        state.append(str(random.randint(0, 5)))
+
+def coinFlip():
+    result = random.choice([True, False])
+    return result
