@@ -1,6 +1,7 @@
 #Comp 472 MP2
 #Author : Samuel Tardif
 import rushHour as rh
+import searchAlgo as sa
 
 #Reading from input file
 filename = 'Sample/sample-input.txt'
