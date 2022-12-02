@@ -182,3 +182,6 @@ def updateCarFuel(car, state, dist):
         state[36+ind+1] = str(fuel-dist)
     return state
 
+
+def printState(state):
+    stateToPrint = state
