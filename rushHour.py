@@ -184,4 +184,16 @@ def updateCarFuel(car, state, dist):
 
 
 def printState(state):
-    stateToPrint = state
+    print("\t|\t1\t2\t3\t4\t5\t6\n")
+    print("___________________________________________________________")
+    print("1\t|\t"+state[0]+"\t"+state[1]+"\t"+state[2]+"\t"+state[3]+"\t"+state[4]+"\t"+state[5]+"\n")
+    print("1\t|\t" + state[6] + "\t" + state[7] + "\t" + state[8] + "\t" + state[9] + "\t" + state[10] + "\t" + state[
+        11] + "\n")
+    print("1\t|\t" + state[12] + "\t" + state[12] + "\t" + state[14] + "\t" + state[15] + "\t" + state[16] + "\t" + state[
+        17] + "\n")
+    print("1\t|\t" + state[18] + "\t" + state[19] + "\t" + state[20] + "\t" + state[21] + "\t" + state[22] + "\t" + state[
+        23] + "\n")
+    print("1\t|\t" + state[24] + "\t" + state[25] + "\t" + state[26] + "\t" + state[27] + "\t" + state[28] + "\t" + state[
+        29] + "\n")
+    print("1\t|\t" + state[30] + "\t" + state[31] + "\t" + state[32] + "\t" + state[33] + "\t" + state[34] + "\t" + state[
+        35] + "\n")
