@@ -24,3 +24,6 @@ print(problems)
 #File output
 with open('problems.txt', 'w') as f:
     f.write(str(problems))
+
+for name in problems:
+    sa.searchUCS(name, problems[name])

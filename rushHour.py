@@ -15,7 +15,7 @@ def valet(state):
 
 
 def areStatesSame(state1, state2):
-    if state1[0:35] == state2[0:35]:
+    if state1[0:36] == state2[0:36]:
         return True
     else:
         return False
@@ -25,8 +25,8 @@ def moveCarRight(car, state, dist):
     carPos = state.index(car)
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state[carPos+i] = '.'
-        state[carPos+carLength+i]=car
+        state = replacer(state, '.', carPos+i)
+        state = replacer(state, car, carPos+carLength+i)
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -36,8 +36,8 @@ def moveCarLeft(car, state, dist):
     carPos = state.index(car)
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state[carPos+carLength - i] = '.'
-        state[carPos-i] = car
+        state = replacer(state, '.', carPos+carLength - i)
+        state = replacer(state, car, carPos-i)
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -47,8 +47,8 @@ def moveCarDown(car, state, dist):
     carPos = state.index(car)
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state[carPos+i*6] = '.'
-        state[carPos+carLength*6+i*6] = car
+        state = replacer(state,'.', carPos+i*6)
+        state = replacer(state, car, carPos+carLength*6+i*6)
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -58,8 +58,8 @@ def moveCarUp(car, state, dist):
     carPos = state.index(car)
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state[carPos+carLength*6-i*6] = '.'
-        state[carPos-i*6] = car
+        state = replacer(state, '.', carPos+carLength*6-i*6)
+        state = replacer(state, car, carPos-i*6)
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -83,7 +83,7 @@ def getCarLength(car, state):
             if state[i] == car:
                 length+=1
     else:
-        for i in range(carPos, carPos+5):
+        for i in range(carPos, carPos+5-carPos%6):
             if state[i] == car:
                 length+=1
     return length
@@ -99,7 +99,7 @@ def getCarRangeUp(car, state):
         else:
             carRange = 0
             for i in range(carPos-6,0,-6):
-                if state[i] == '.' & getFuelForCar(car, state)>carRange:
+                if ((state[i] == '.') & (getFuelForCar(car, state)>carRange)):
                     carRange += 1
                 else:
                     return carRange
@@ -131,7 +131,7 @@ def getCarRangeRight(car, state):
         else:
             carRange = 0
             for i in range(carPos+getCarLength(car, state), carPos+(6-carPos%6-getCarLength(car, state))):
-                if state[i] == '.'& getFuelForCar(car, state)>carRange:
+                if (state[i] == '.') & (getFuelForCar(car, state)>carRange):
                     carRange += 1
                 else:
                     return carRange
@@ -147,15 +147,16 @@ def getCarRangeLeft(car, state):
         else:
             carRange = 0
             for i in range(carPos+getCarLength(car, state), carPos-carPos%6, -1):
-                if state[i] == '.'& getFuelForCar(car, state)>carRange:
+                if (str(state[i]) == ".") & (getFuelForCar(car, state)>carRange):
                     carRange += 1
                 else:
                     return carRange
             return carRange
 
 def listOfCars(state):
-    listOfCars = set(state)
-    listOfCars.replace('.', '')
+    setOfCars = set(state[0:36])
+    listOfCars = (list(setOfCars))
+    listOfCars.remove('.')
     return listOfCars
 
 def getFuelForCar(car, state):
@@ -163,7 +164,7 @@ def getFuelForCar(car, state):
         return 100
     fuelInfo = state[36:]
     if car in fuelInfo:
-        ind = fuelInfo.index("car")
+        ind = fuelInfo.index(car)
         return int(fuelInfo[ind+1])
     else:
         return 100
@@ -262,6 +263,18 @@ def generateRandomProblem():
                         state.append(car)
                         state.append(str(random.randint(0, 5)))
 
+#GENERAL UTIL FUNCTIONS
 def coinFlip():
     result = random.choice([True, False])
     return result
+
+def replacer(s, newstring, index):
+    if index < 0:  # add it to the beginning
+        return newstring + s
+    if index > len(s):  # add it to the end
+        return s + newstring
+
+    if index == len(s)-1:  # add it to the end
+        return s[:index] + newstring
+    # insert the new string between "slices" of the original
+    return s[:index] + newstring + s[index + 1:]

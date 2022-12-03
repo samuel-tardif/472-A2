@@ -1,0 +1,66 @@
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	M: 100, H: 100, J: 100, D: 100, C: 100, L: 100, K: 100, B: 100, F: 100, I: 100, G: 100, A: 100, 
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	J: 100, A: 100, B: 100, D: 100, K: 100, H: 100, C: 100, F: 100, G: 100, L: 100, I: 100, M: 100, 
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	J: 100, L: 100, F: 100, B: 100, D: 100, M: 100, H: 100, K: 100, C: 100, I: 100, G: 100, A: 100, 
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	G: 100, K: 100, J: 100, C: 100, B: 100, M: 100, H: 100, I: 100, D: 100, L: 100, A: 100, F: 100, 
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	H: 100, L: 100, F: 100, G: 100, B: 100, K: 100, A: 100, D: 100, I: 100, M: 100, J: 100, C: 100, 
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	J: 100, F: 100, H: 100, C: 100, I: 100, L: 100, A: 100, M: 100, G: 100, B: 100, D: 100, K: 100, 
+

@@ -90,7 +90,7 @@ def searchUCS(name, startState):
     f.write("\n")
     f.write("Fuel available to each car: \t")
     for car in rh.listOfCars(startState):
-        f.write(car+": "+rh.getFuelForCar(car, startState)+", ")
+        f.write(car+": " + str(rh.getFuelForCar(car, startState)) + ", ")
 
     f.write("\n\n")
     f.close()
@@ -98,8 +98,12 @@ def searchUCS(name, startState):
     while openList != []:
 
         counter += 1
+        print("start of while loop")
+        print("There are " + str(len(openList)) + " elements in openlist")
+        current = openList.pop(0)
+        print("There are " + str(len(openList)) + " elements in openlist")
 
-        current = open.pop(0)
+        print(current.state)
 
         if rh.isSolution(current.state):
             #We found it
@@ -108,12 +112,12 @@ def searchUCS(name, startState):
             print(solutionString)
             #TO DO SOLUTION FILE
             f = open(solFileName, "a")
-            f.write("Runtime: "+time.time()-st+"\n")
-            f.write("Length of search path: "+counter+"\n")
-            f.write("Length of solution path: " + len(solution)+"\n")
+            f.write("Runtime: "+ str(time.time()-st)+"\n")
+            f.write("Length of search path: "+str(counter)+"\n")
+            f.write("Length of solution path: " + str(len(solution))+"\n")
             f.write("Solution path: "+solutionString+"\n\n")
             for node in solution:
-                f.write(node.move + "\t" + rh.getFuelForCar(node.move[0],node.state) + "\t" + node.state + "\n")
+                f.write(node.move + "\t" + str(rh.getFuelForCar(node.move[0],node.state)) + "\t" + node.state + "\n")
 
             #Final state
             f.write("\n\n")
@@ -140,18 +144,19 @@ def searchUCS(name, startState):
             #Children of current
             children = []
             activeCars = rh.listOfCars(current.state)
+            print("There are " + str(len(activeCars)) + " elements in list of cars")
             for car in activeCars:
                 #Check if we can move right
                 if rh.getCarRangeRight(car, current.state) > 0:
-                    for dist in range(1,rh.getCarRangeRight(car, current.state)):
-                        children.append(SearchNode(rh.moveCarRight(car,current.state,dist),
+                    for dist in range(1,rh.getCarRangeRight(car, current.state)+1):
+                        children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
                                                    current.cost+dist,
                                                    str(car)+"\tright\t"+str(dist),
                                                    current,
                                                    0))
                 # Check if we can move left
                 if rh.getCarRangeLeft(car, current.state) > 0:
-                    for dist in range(1, rh.getCarRangeLeft(car, current.state)):
+                    for dist in range(1, rh.getCarRangeLeft(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
                                                    current.cost + dist,
                                                    str(car) + "\tleft\t" + str(dist),
@@ -159,7 +164,7 @@ def searchUCS(name, startState):
                                                    0))
                 # Check if we can move up
                 if rh.getCarRangeUp(car, current.state) > 0:
-                    for dist in range(1, rh.getCarRangeUp(car, current.state)):
+                    for dist in range(1, rh.getCarRangeUp(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
                                                    current.cost + dist,
                                                    str(car) + "\tup\t" + str(dist),
@@ -167,7 +172,7 @@ def searchUCS(name, startState):
                                                    0))
                 # Check if we can move down
                 if rh.getCarRangeDown(car, current.state) > 0:
-                    for dist in range(1, rh.getCarRangeDown(car, current.state)):
+                    for dist in range(1, rh.getCarRangeDown(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
                                                     current.cost + dist,
                                                     str(car) + "\tdown\t" + str(dist),
@@ -177,11 +182,15 @@ def searchUCS(name, startState):
             #Add current to closed list
             closedList.append(current)
 
+            print("There are " + str(len(children)) + " nodes in children list")
+            for child in children:
+                print(child.state)
             #Check if children are in closed
             for child in children:
                 for node in closedList:
                     if rh.areStatesSame(child.state, node.state):
                         children.remove(child)
+                        break
 
 
             #Check if children are in open
@@ -189,23 +198,44 @@ def searchUCS(name, startState):
                 for node in openList:
                     if rh.areStatesSame(child.state, node.state):
                         children.remove(child)
+                        break
 
             #Insert in queue according to cost
+            print("There are " + str(len(openList)) + " nodes in open list")
+            print("Inserting "+str(len(children))+" nodes in open list")
             for child in children:
                 if len(openList) == 0:
+                    print("inserted 1")
+                    print("Inserted state:" + child.state)
                     openList.append(child)
                 else:
+                    inserted = False
                     for i in range(0, len(openList)):
                         if child.cost <= openList[i].cost:
+                            print("inserted 2")
+                            print("Inserted state:" + child.state)
                             openList.insert(i, child)
+                            inserted = True
+                            break
+
+                    if not inserted:
+                        openList.append(child)
+                        print("inserted3")
+                        print("Inserted state:"+child.state)
+
+
+
+            print("There are " + str(len(closedList)) + " nodes in closed list")
+            print("There are " + str(len(openList)) + " nodes in open list")
 
 
     #NO solution was found
     #TO DO - Print solution file with no sol
-
-    f.write("Runtime: " + time.time() - st + "\n")
-    f.write("Length of search path: " + counter + "\n")
+    f = open(solFileName, "a")
+    f.write("Runtime: " + str(time.time() - st) + "\n")
+    f.write("Length of search path: " + str(counter) + "\n")
     f.write("No solution found")
+    f.close()
 
 
     print("no solution")
@@ -233,7 +263,7 @@ def searchGBFS(name, startState):
 
             counter += 1
 
-            current = open.pop(0)
+            current = openList.pop(0)
 
             if rh.isSolution(current.state):
                 # We found it
@@ -357,7 +387,7 @@ def searchA(name, startState):
 
             counter += 1
 
-            current = open.pop(0)
+            current = openList.pop(0)
 
             if rh.isSolution(current.state):
                 # We found it
