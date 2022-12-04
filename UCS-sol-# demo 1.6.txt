@@ -7,9 +7,9 @@ EAAG.I
 DDF..I
 ..F...
 
-Fuel available to each car: 	D: 100, G: 100, A: 100, B: 100, F: 100, E: 100, C: 100, I: 100, H: 100, 
+Fuel available to each car: 	B: 100, D: 100, C: 100, F: 100, E: 100, I: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 1.6643164157867432
+Runtime: 1.6973888874053955
 Length of search path: 653
 Length of solution path: 4
 Solution path: B	right	1, C	right	1, G	down	3, A	right	3, 

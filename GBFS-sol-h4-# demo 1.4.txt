@@ -7,30 +7,23 @@ J.KLEE
 J.GG..
 JHHHII
 
-Fuel available to each car: 	H: 100, K: 100, L: 100, G: 100, D: 100, E: 100, C: 100, B: 4, A: 100, J: 0, I: 100, M: 100, 
+Fuel available to each car: 	B: 4, D: 100, L: 100, J: 0, C: 100, M: 100, E: 100, K: 100, I: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 0.010004043579101562
-Length of search path: 12
-Length of solution path: 11
-Solution path: B	right	2, B	right	1, D	left	1, D	left	1, D	right	4, G	left	1, G	left	1, G	right	4, L	down	1, K	down	1, A	right	4, 
+Runtime: 0.005002260208129883
+Length of search path: 5
+Length of solution path: 4
+Solution path: G	right	2, K	down	1, L	down	1, A	right	4, 
 
-B	right	2	2	..BBB.CCDD..AAKL..J.KLEEJ.GG..JHHHII J0 B2
-B	right	1	1	...BBBCCDD..AAKL..J.KLEEJ.GG..JHHHII J0 B1
-D	left	1	100	...BBBCDD...AAKL..J.KLEEJ.GG..JHHHII J0 B1
-D	left	1	100	...BBBDD....AAKL..J.KLEEJ.GG..JHHHII J0 B1
-D	right	4	100	...BBB....DDAAKL..J.KLEEJ.GG..JHHHII J0 B1
-G	left	1	100	...BBB....DDAAKL..J.KLEEJGG...JHHHII J0 B1
-G	left	1	100	...BBB....DDAAKL..J.KLEEGG....JHHHII J0 B1
-G	right	4	100	...BBB....DDAAKL..J.KLEE....GGJHHHII J0 B1
-L	down	1	100	...BBB....DDAAK...J.KLEE...LGGJHHHII J0 B1
-K	down	1	100	...BBB....DDAA....J.KLEE..KLGGJHHHII J0 B1
-A	right	4	100	...BBB....DD......J.KLEE..KLGGJHHHII J0 B1
+G	right	2	100	BBB...CCDD..AAKL..J.KLEEJ...GGJHHHII J0 B4
+K	down	1	100	BBB...CCDD..AA.L..J.KLEEJ.K.GGJHHHII J0 B4
+L	down	1	100	BBB...CCDD..AA....J.KLEEJ.KLGGJHHHII J0 B4
+A	right	4	100	BBB...CCDD........J.KLEEJ.KLGGJHHHII J0 B4
 
 
-...BBB
-....DD
+BBB...
+CCDD..
 ......
 J.KLEE
-..KLGG
+J.KLGG
 JHHHII
 

@@ -7,8 +7,8 @@ EEK.L.
 ..KFF.
 .GGHH.
 
-Fuel available to each car: 	H: 100, K: 100, L: 100, G: 6, F: 0, D: 100, E: 100, C: 100, B: 100, A: 100, J: 100, I: 100, 
+Fuel available to each car: 	B: 100, D: 100, L: 100, J: 100, C: 100, A: 100, F: 0, E: 100, K: 100, G: 6, H: 100, I: 100, 
 
-Runtime: 7.06835675239563
-Length of search path: 2500
+Runtime: 7.152019023895264
+Length of search path: 2414
 No solution found

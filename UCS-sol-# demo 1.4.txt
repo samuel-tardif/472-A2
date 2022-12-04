@@ -7,10 +7,10 @@ J.KLEE
 J.GG..
 JHHHII
 
-Fuel available to each car: 	D: 100, G: 100, A: 100, B: 4, L: 100, M: 100, E: 100, J: 0, C: 100, K: 100, I: 100, H: 100, 
+Fuel available to each car: 	B: 4, D: 100, L: 100, J: 0, C: 100, M: 100, E: 100, K: 100, I: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 4.57870888710022
-Length of search path: 1147
+Runtime: 4.955710411071777
+Length of search path: 1151
 Length of solution path: 7
 Solution path: D	right	1, K	up	1, G	left	1, D	left	1, L	down	1, K	left	1, K	left	1, 
 

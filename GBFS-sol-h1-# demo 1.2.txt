@@ -7,8 +7,8 @@ GHDDKL
 G..JEE
 FF.J..
 
-Fuel available to each car: 	H: 100, K: 100, G: 100, L: 100, F: 100, D: 100, E: 100, B: 100, A: 100, I: 100, J: 100, 
+Fuel available to each car: 	B: 100, D: 100, L: 100, J: 100, A: 100, F: 100, E: 100, K: 100, G: 100, H: 100, I: 100, 
 
-Runtime: 19.218525171279907
-Length of search path: 4564
+Runtime: 21.664875745773315
+Length of search path: 4563
 No solution found

@@ -153,6 +153,11 @@ def searchUCS(name, startState):
                 f.write(current.state[30:36] + "\n")
                 f.write("\n")
                 f.close()
+            else:
+                #Print results to spreadsheet
+                fss = open("randomresults.txt", "a")
+                fss.write(name + "\tUCS\tNA\t" + str(len(solution))+ "\t" + str(counter) + "\t" + str(time.time()-st)  + "\n")
+
 
             #Do this so we stop looking
             return "Solution found: " + str(solution)
@@ -369,6 +374,13 @@ def searchGBFS(name, startState):
                     f.write("\n")
                     f.close()
 
+                else:
+                    # Print results to spreadsheet
+                    fss = open("randomresults.txt", "a")
+                    fss.write(
+                        name + "\tGBFS\th" +str(heurList.index(heur)+1) + "\t" + str(len(solution))
+                        + "\t" + str(counter) + "\t" + str(time.time() - st) + "\n")
+
                 # Do this so we stop looking
                 solutionFound = True
                 break
@@ -386,7 +398,7 @@ def searchGBFS(name, startState):
                                                        current.cost + dist,
                                                        str(car) + "\tright\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(rh.moveCarRight(car, current.state, dist))))
                     # Check if we can move left
                     # print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                     if rh.getCarRangeLeft(car, current.state) > 0:
@@ -395,7 +407,7 @@ def searchGBFS(name, startState):
                                                        current.cost + dist,
                                                        str(car) + "\tleft\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(rh.moveCarLeft(car, current.state, dist))))
                     # Check if we can move up
                     # print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                     if rh.getCarRangeUp(car, current.state) > 0:
@@ -404,7 +416,7 @@ def searchGBFS(name, startState):
                                                        current.cost + dist,
                                                        str(car) + "\tup\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(rh.moveCarUp(car, current.state, dist))))
                     # Check if we can move down
                     # print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeDown(car, current.state) > 0:
@@ -413,7 +425,7 @@ def searchGBFS(name, startState):
                                                        current.cost + dist,
                                                        str(car) + "\tdown\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(rh.moveCarDown(car, current.state, dist))))
 
                 # Add current to closed list
                 closedList.append(current)
@@ -570,6 +582,12 @@ def searchA(name, startState):
                     f.write(current.state[30:36] + "\n")
                     f.write("\n")
                     f.close()
+                else:
+                    # Print results to spreadsheet
+                    fss = open("randomresults.txt", "a")
+                    fss.write(
+                        name + "\tA*\th" +str(heurList.index(heur)+1) + "\t" + str(len(solution))
+                        + "\t" + str(counter) + "\t" + str(time.time() - st) + "\n")
 
                 # Do this so we stop looking
                 solutionFound = True
@@ -584,38 +602,42 @@ def searchA(name, startState):
                     # print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeRight(car, current.state) > 0:
                         for dist in range(1, rh.getCarRangeRight(car, current.state) + 1):
-                            children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
+                            newState = rh.moveCarRight(car, current.state, dist)
+                            children.append(SearchNode(newState,
                                                        current.cost + dist,
                                                        str(car) + "\tright\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(newState)))
                     # Check if we can move left
                     # print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                     if rh.getCarRangeLeft(car, current.state) > 0:
                         for dist in range(1, rh.getCarRangeLeft(car, current.state) + 1):
-                            children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
+                            newState = rh.moveCarLeft(car, current.state, dist)
+                            children.append(SearchNode(newState,
                                                        current.cost + dist,
                                                        str(car) + "\tleft\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(newState)))
                     # Check if we can move up
                     # print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                     if rh.getCarRangeUp(car, current.state) > 0:
                         for dist in range(1, rh.getCarRangeUp(car, current.state) + 1):
-                            children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
+                            newState = rh.moveCarUp(car, current.state, dist)
+                            children.append(SearchNode(newState,
                                                        current.cost + dist,
                                                        str(car) + "\tup\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(newState)))
                     # Check if we can move down
                     # print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeDown(car, current.state) > 0:
                         for dist in range(1, rh.getCarRangeDown(car, current.state) + 1):
-                            children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
+                            newState = rh.moveCarDown(car, current.state, dist)
+                            children.append(SearchNode(newState,
                                                        current.cost + dist,
                                                        str(car) + "\tdown\t" + str(dist),
                                                        current,
-                                                       0))
+                                                       heur(newState)))
 
                 # Add current to closed list
                 closedList.append(current)

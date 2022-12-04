@@ -7,29 +7,26 @@ EAAG.I
 DDF..I
 ..F...
 
-Fuel available to each car: 	H: 100, G: 100, F: 100, E: 100, D: 100, C: 100, B: 100, A: 100, I: 100, 
+Fuel available to each car: 	B: 100, D: 100, C: 100, F: 100, E: 100, I: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 0.01000213623046875
-Length of search path: 11
-Length of solution path: 10
-Solution path: I	down	1, I	up	1, C	left	1, B	right	1, C	left	1, C	left	1, F	up	1, G	down	3, A	left	1, A	right	4, 
+Runtime: 0.0060002803802490234
+Length of search path: 8
+Length of solution path: 7
+Solution path: I	down	1, H	down	1, I	up	3, C	right	1, G	down	3, A	left	1, A	right	4, 
 
 I	down	1	100	BB.G.HE..G.HEAAG....FCCIDDF..I..F..I
-I	up	1	100	BB.G.HE..G.HEAAG....FCC.DDF.....F...
-C	left	1	100	BB.G.HE..G.HEAAG....CC..DDF.....F...
-B	right	1	100	.BBG.HE..G.HEAAG....CC..DDF.....F...
-C	left	1	100	.BBG.HE..G.HEAAG...CC...DDF.....F...
-C	left	1	100	.BBG.HE..G.HEAAG..CC....DDF.....F...
-F	up	1	100	.BBG.HE..G.HEAAG..CCF...DDF.........
-G	down	3	100	.BB..HE....HEAA...CCFG..DDFG.....G..
-A	left	1	100	.BB..HE....HAA....CCFG..DDFG.....G..
-A	right	4	100	.BB..HE....H......CCFG..DDFG.....G..
+H	down	1	100	BB.G..E..G..EAAG....FCCIDDF..I..F..I
+I	up	3	100	BB.G.IE..G.IEAAG....FCC.DDF.....F..I
+C	right	1	100	BB.G.IE..G.IEAAG....F.CCDDF.....F..I
+G	down	3	100	BB...IE....IEAA.....FGCCDDFG....FG.I
+A	left	1	100	BB...IE....IAA......FGCCDDFG....FG.I
+A	right	4	100	BB...IE....I........FGCCDDFG....FG.I
 
 
-.BB..H
-E....H
+BB...I
+E....I
 ......
-CCFG..
+..FGCC
 DDFG..
-...G..
+..FG.I
 

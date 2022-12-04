@@ -7,29 +7,28 @@ FFKL.N
 ..KGGN
 .HH...
 
-Fuel available to each car: 	H: 100, K: 100, L: 100, G: 100, F: 100, D: 100, C: 100, B: 100, A: 100, N: 100, J: 100, M: 100, 
+Fuel available to each car: 	B: 100, D: 100, L: 100, J: 100, N: 100, C: 100, M: 100, F: 100, K: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 0.009611845016479492
-Length of search path: 11
-Length of solution path: 10
-Solution path: N	down	1, N	up	3, D	left	1, D	right	3, G	left	1, G	left	1, G	left	1, L	down	2, A	left	1, A	right	4, 
+Runtime: 0.011003494262695312
+Length of search path: 10
+Length of solution path: 9
+Solution path: H	left	1, H	right	1, N	up	2, H	right	3, G	left	1, G	left	1, L	down	2, A	left	1, A	right	4, 
 
-N	down	1	100	JBBCCCJDD...JAAL..FFKL....KGGN.HH..N
-N	up	3	100	JBBCCCJDD..NJAAL..FFKL....KGG..HH..N
-D	left	1	100	JBBCCCDD...NJAAL..FFKL....KGG..HH..N
-D	right	3	100	JBBCCC...DDNJAAL..FFKL....KGG..HH..N
-G	left	1	100	JBBCCC...DDNJAAL..FFKL....GG...HH..N
-G	left	1	100	JBBCCC...DDNJAAL..FFKL...GG....HH..N
-G	left	1	100	JBBCCC...DDNJAAL..FFKL..GG.....HH..N
-L	down	2	100	JBBCCC...DDNJAA...FFK...GG.L...HHL.N
-A	left	1	100	JBBCCC...DDNAA....FFK...GG.L...HHL.N
-A	right	4	100	JBBCCC...DDN......FFK...GG.L...HHL.N
+H	left	1	100	JBBCCCJDD...JAAL..FFKL.N..KGGNHH....
+H	right	1	100	JBBCCCJDD...JAAL..FFKL.N..KGGN.HH...
+N	up	2	100	JBBCCCJDD...JAAL..FFKL....KGG..HH...
+H	right	3	100	JBBCCCJDD...JAAL..FFKL....KGG.....HH
+G	left	1	100	JBBCCCJDD...JAAL..FFKL....GG......HH
+G	left	1	100	JBBCCCJDD...JAAL..FFKL...GG.......HH
+L	down	2	100	JBBCCCJDD...JAA...FFK....GGL.....LHH
+A	left	1	100	JBBCCCJDD...AA....FFK....GGL.....LHH
+A	right	4	100	JBBCCCJDD.........FFK....GGL.....LHH
 
 
 JBBCCC
-...DDN
+JDD...
 ......
 FFK...
-GG.L..
-.HHL.N
+.GGL..
+...LHH
 

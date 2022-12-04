@@ -7,10 +7,10 @@ FFKL.N
 ..KGGN
 .HH...
 
-Fuel available to each car: 	L: 100, G: 100, N: 100, M: 100, A: 100, K: 100, D: 100, B: 100, F: 100, H: 100, J: 100, C: 100, 
+Fuel available to each car: 	B: 100, D: 100, L: 100, J: 100, N: 100, C: 100, M: 100, F: 100, K: 100, G: 100, H: 100, A: 100, 
 
-Runtime: 18.428772926330566
-Length of search path: 2190
+Runtime: 5.872334003448486
+Length of search path: 1073
 Length of solution path: 5
 Solution path: H	left	1, N	up	1, G	right	1, L	down	1, A	right	3, 
 

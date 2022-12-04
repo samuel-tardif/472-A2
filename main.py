@@ -5,8 +5,11 @@ import searchAlgo as sa
 
 #Reading from input file
 filename = 'Sample/sample-input.txt'
+filename2 = "randomproblems.txt"
+
+#CHANGE FILENAME BELOW TO CHANGE WHAT PROBLEMS ARE SOLVED
 lines = []
-with open(filename) as file:
+with open(filename2) as file:
     for line in file:
         if line.strip():
             lines.append(line.strip())
@@ -19,19 +22,19 @@ for i, line in enumerate(lines):
         problems.update({lines[i-1]:line})
 
 
-
-#for name in problems:
-#    sa.searchUCS(name, problems[name])
-#    sa.searchGBFS(name, problems[name])
-#    sa.searchA(name, problems[name])
+#UNCOMMENT TO RUN search algos
+for name in problems:
+    sa.searchUCS(name, problems[name])
+    sa.searchGBFS(name, problems[name])
+    sa.searchA(name, problems[name])
 
 #Generating random problems
-
-f = open("randomproblems.txt", "w")
-for i in range(0,50):
-    randomProblem = rh.generateRandomProblem()
-    name = str(i+1)
-    f.write("#"+name+"\n"+randomProblem+"\n\n")
+#UNCOMMENT TO GENERATE NEW PROBLEMS
+#f = open("randomproblems.txt", "w")
+#for i in range(0,50):
+#    randomProblem = rh.generateRandomProblem()
+#    name = str(i+1)
+#    f.write("#"+name+"\n"+randomProblem+"\n\n")
 
 
 

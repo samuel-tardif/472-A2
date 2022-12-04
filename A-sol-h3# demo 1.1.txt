@@ -7,9 +7,9 @@ GDDK.M
 GH.KL.
 GHFFL.
 
-Fuel available to each car: 	L: 100, G: 100, I: 100, A: 100, M: 100, K: 100, B: 100, D: 100, F: 100, H: 100, J: 100, C: 100, 
+Fuel available to each car: 	B: 100, D: 100, L: 100, J: 100, C: 100, M: 100, A: 100, F: 100, K: 100, G: 100, H: 100, I: 100, 
 
-Runtime: 0.007002353668212891
+Runtime: 0.006001949310302734
 Length of search path: 8
 Length of solution path: 2
 Solution path: L	up	1, A	right	1, 
