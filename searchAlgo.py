@@ -70,7 +70,7 @@ def searchUCS(name, startState):
     searchFileName = algoName+"-search-"+name+".txt"
 
     #Setting up lists
-    openList = [SearchNode(startState,0,"","none",0)]
+    openList = [SearchNode(startState,0,"-","none",0)]
     closedList = []
 
     #Counter to know how many nodes we explore
@@ -100,6 +100,7 @@ def searchUCS(name, startState):
     while openList != []:
 
         counter += 1
+        print("\n\n--------------------------------------------------------------------")
         print("start of while loop")
         print("There are " + str(len(openList)) + " elements in openlist")
         current = openList.pop(0)
@@ -141,15 +142,15 @@ def searchUCS(name, startState):
             #
 
             #Do this so we stop looking
-            return "Solution found: " + solution
+            return "Solution found: " + str(solution)
         else:
             #Children of current
             children = []
             activeCars = rh.listOfCars(current.state)
-            print("There are " + str(len(activeCars)) + " elements in list of cars")
+            #print("There are " + str(len(activeCars)) + " elements in list of cars")
             for car in activeCars:
                 #Check if we can move right
-                print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
+                #print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
                 if rh.getCarRangeRight(car, current.state) > 0:
                     for dist in range(1,rh.getCarRangeRight(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
@@ -158,7 +159,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move left
-                print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
+                #print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                 if rh.getCarRangeLeft(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeLeft(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
@@ -167,7 +168,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move up
-                print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
+                #print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                 if rh.getCarRangeUp(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeUp(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
@@ -176,7 +177,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move down
-                print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
+                #print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                 if rh.getCarRangeDown(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeDown(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
@@ -196,14 +197,14 @@ def searchUCS(name, startState):
             #Check if children are in closed
             uniqueChildren = copy.deepcopy(children)
             for child in children:
-                print("Checking child: " + child.state + " vs closedList\n")
+                #print("Checking child: " + child.state + " vs closedList\n")
                 for node in closedList:
-                    print("COmparing " + child.state + " and " + node.state)
+                    #print("COmparing " + child.state + " and " + node.state)
                     if rh.areStatesSame(child.state, node.state):
-                        print("states are the same")
+                        #print("states are the same")
                         for elem in uniqueChildren:
                             if rh.areStatesSame(elem.state, child.state):
-                                print("Removing child")
+                                #print("Removing child")
                                 uniqueChildren.remove(elem)
                         break
 
@@ -214,14 +215,14 @@ def searchUCS(name, startState):
             #Check if children are in open
             uniqueChildren = copy.deepcopy(children)
             for child in children:
-                print("Checking child: " + child.state + " vs openList")
+                #print("Checking child: " + child.state + " vs openList")
                 for node in openList:
-                    print("COmparing "+ child.state + " and "+ node.state)
+                    #print("COmparing "+ child.state + " and "+ node.state)
                     if rh.areStatesSame(child.state, node.state):
-                        print("States are the same")
+                        #print("States are the same")
                         for elem in uniqueChildren:
                             if rh.areStatesSame(elem.state, child.state):
-                                print("Removing child")
+                                #print("Removing child")
                                 uniqueChildren.remove(elem)
                         break
 
@@ -522,12 +523,14 @@ def returnSolutionPath(solutionNode):
     current = solutionNode
     while current.prev != "none":
         current = current.prev
-        solutionPath.append(0, current)
+        if current.prev == "none":
+            break
+        solutionPath.insert(0, current)
     return solutionPath
 
 def solutionAsString(solutionPath):
     solutionString = ""
     for node in solutionPath:
-        solutionString.append(node.move+", ")
+        solutionString = solutionString+node.move+", "
     return solutionString
 

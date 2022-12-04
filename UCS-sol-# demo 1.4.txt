@@ -1,0 +1,32 @@
+Initial configuration of the board: BBB..MCCDD.MAAKL.MJ.KLEEJ.GG..JHHHII J0 B4
+
+BBB..M
+CCDD.M
+AAKL.M
+J.KLEE
+J.GG..
+JHHHII
+
+Fuel available to each car: 	M: 100, B: 4, E: 100, C: 100, K: 100, G: 100, I: 100, H: 100, L: 100, D: 100, A: 100, J: 0, 
+
+Runtime: 4.328417062759399
+Length of search path: 1011
+Length of solution path: 7
+Solution path: D	right	1, G	left	1, K	up	1, L	down	1, D	left	1, K	left	1, K	left	1, 
+
+D	right	1	100	BBB...CC.DD.AAKL..J.KLEEJ.GG..JHHHII J0 B4
+G	left	1	100	BBB...CC.DD.AAKL..J.KLEEJGG...JHHHII J0 B4
+K	up	1	100	BBB...CCKDD.AAKL..J..LEEJGG...JHHHII J0 B4
+L	down	1	100	BBB...CCKDD.AAK...J..LEEJGGL..JHHHII J0 B4
+D	left	1	100	BBB...CCDD..AAK...J..LEEJGGL..JHHHII J0 B4
+K	left	1	100	BBB...CCDD..AK....J..LEEJGGL..JHHHII J0 B4
+K	left	1	100	BBB...CCDD..K.....J..LEEJGGL..JHHHII J0 B4
+
+
+BBB...
+CCDD..
+K.....
+J..LEE
+JGGL..
+JHHHII
+

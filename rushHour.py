@@ -36,8 +36,8 @@ def moveCarLeft(car, state, dist):
     carPos = state.index(car)
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state = replacer(state, '.', carPos+carLength - i)
-        state = replacer(state, car, carPos-i)
+        state = replacer(state, '.', carPos + carLength-1 - i)
+        state = replacer(state, car, carPos-(1+i))
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -56,10 +56,13 @@ def moveCarDown(car, state, dist):
 
 def moveCarUp(car, state, dist):
     carPos = state.index(car)
+    #print("car pos : " + str(carPos))
     carLength = getCarLength(car, state)
     for i in range(0, dist):
-        state = replacer(state, '.', carPos+carLength*6-i*6)
-        state = replacer(state, car, carPos-i*6)
+        #print("adding blank at index :"+ str(carPos+(carLength-1)*6-i*6))
+        state = replacer(state, '.', carPos+(carLength-1)*6-i*6)
+        #print("adding car at ind :"+str(carPos-(i+1)*6))
+        state = replacer(state, car, carPos-(i+1)*6)
     state = updateCarFuel(car, state, dist)
     state = valet(state)
     return state
@@ -107,15 +110,21 @@ def getCarRangeUp(car, state):
 
 def getCarRangeDown(car, state):
     if not isCarVertical(car, state):
+        #print("car not vertical")
         return 0
     else:
         carPos = state.index(car)
+        #print("car pos: "+str(carPos))
         if carPos >= 30:
             return 0
         else:
             carRange = 0
-            for i in range(carPos+getCarLength(car, state)*6,0,6):
-                if state[i] == '.'& getFuelForCar(car, state)>carRange:
+            #print("car length: "+str(getCarLength(car, state)))
+            for i in range(carPos+getCarLength(car, state)*6, 36, 6):
+                #print("i: "+str(i))
+                #print(str(getFuelForCar(car, state)))
+                if (state[i] == '.') & (getFuelForCar(car, state)>carRange):
+                    #print("Increment range")
                     carRange += 1
                 else:
                     return carRange
@@ -123,15 +132,25 @@ def getCarRangeDown(car, state):
 
 def getCarRangeRight(car, state):
     if isCarVertical(car, state):
+        #print("car vertical")
         return 0
     else:
         carPos = state.index(car)
-        if (carPos) % 6 >= 4:
+        length = getCarLength(car, state)
+        if (length == 2) & ((carPos) % 6 >= 4):
+            #print("car already max right")
+            return 0
+        elif (length == 3) & ((carPos) % 6 >= 3):
+            #print("car already max right")
             return 0
         else:
             carRange = 0
-            for i in range(carPos+getCarLength(car, state), carPos+(6-carPos%6-getCarLength(car, state))):
-                if (state[i] == '.') & (getFuelForCar(car, state)>carRange):
+            #print("lower bound"+ str(carPos+length)+ " upper bound: "+str(carPos+(6-carPos%6)))
+            for i in range(carPos+length, carPos+(6-carPos%6)):
+                #print("i: "+str(i))
+                #print(state[i])
+                if (state[i] == '.') & (getFuelForCar(car, state) > carRange):
+                    #print("Increment range")
                     carRange += 1
                 else:
                     return carRange
@@ -181,10 +200,12 @@ def updateCarFuel(car, state, dist):
     if len(state) == 36:
         return state
     fuelInfo = state[36:]
+    #print("length: "+str(len(state)))
+    #print("fuel info : "+fuelInfo)
     if car in fuelInfo:
-        ind = fuelInfo.index("car")
+        ind = fuelInfo.index(car)
         fuel = int(fuelInfo[ind + 1])
-        state[36+ind+1] = str(fuel-dist)
+        state = replacer(state, str(fuel-dist), 36+ind+1)
     return state
 
 
