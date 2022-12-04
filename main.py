@@ -25,5 +25,7 @@ print(problems)
 with open('problems.txt', 'w') as f:
     f.write(str(problems))
 
-for name in problems:
-    sa.searchUCS(name, problems[name])
+#for name in problems:
+#    sa.searchUCS(name, problems[name])
+
+#print(str(rh.areStatesSame("BBIJ....IJCC..IAA.GDDK..GH.KL.GHFFL....", "BBIJ....IJCC..IAA.GDDK..GH.KL.GHFFL.....")))

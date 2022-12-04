@@ -1,5 +1,6 @@
 import rushHour as rh
 import time
+import copy
 
 def heur1(state):
     aPos = state.index('A')
@@ -57,7 +58,8 @@ class SearchNode:
         self.prev = prev
         self.heur = heur
 
-# AYYYYY
+
+
 
 def searchUCS(name, startState):
 
@@ -147,6 +149,7 @@ def searchUCS(name, startState):
             print("There are " + str(len(activeCars)) + " elements in list of cars")
             for car in activeCars:
                 #Check if we can move right
+                print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
                 if rh.getCarRangeRight(car, current.state) > 0:
                     for dist in range(1,rh.getCarRangeRight(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
@@ -155,6 +158,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move left
+                print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                 if rh.getCarRangeLeft(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeLeft(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
@@ -163,6 +167,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move up
+                print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                 if rh.getCarRangeUp(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeUp(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
@@ -171,6 +176,7 @@ def searchUCS(name, startState):
                                                    current,
                                                    0))
                 # Check if we can move down
+                print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                 if rh.getCarRangeDown(car, current.state) > 0:
                     for dist in range(1, rh.getCarRangeDown(car, current.state)+1):
                         children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
@@ -182,23 +188,45 @@ def searchUCS(name, startState):
             #Add current to closed list
             closedList.append(current)
 
+            #DEBUG PRINT
             print("There are " + str(len(children)) + " nodes in children list")
             for child in children:
                 print(child.state)
+
             #Check if children are in closed
+            uniqueChildren = copy.deepcopy(children)
             for child in children:
+                print("Checking child: " + child.state + " vs closedList\n")
                 for node in closedList:
+                    print("COmparing " + child.state + " and " + node.state)
                     if rh.areStatesSame(child.state, node.state):
-                        children.remove(child)
+                        print("states are the same")
+                        for elem in uniqueChildren:
+                            if rh.areStatesSame(elem.state, child.state):
+                                print("Removing child")
+                                uniqueChildren.remove(elem)
                         break
+
+
+            children = copy.deepcopy(uniqueChildren)
 
 
             #Check if children are in open
+            uniqueChildren = copy.deepcopy(children)
             for child in children:
+                print("Checking child: " + child.state + " vs openList")
                 for node in openList:
+                    print("COmparing "+ child.state + " and "+ node.state)
                     if rh.areStatesSame(child.state, node.state):
-                        children.remove(child)
+                        print("States are the same")
+                        for elem in uniqueChildren:
+                            if rh.areStatesSame(elem.state, child.state):
+                                print("Removing child")
+                                uniqueChildren.remove(elem)
                         break
+
+
+            children = copy.deepcopy(uniqueChildren)
 
             #Insert in queue according to cost
             print("There are " + str(len(openList)) + " nodes in open list")
@@ -220,7 +248,7 @@ def searchUCS(name, startState):
 
                     if not inserted:
                         openList.append(child)
-                        print("inserted3")
+                        print("inserted 3")
                         print("Inserted state:"+child.state)
 
 
