@@ -100,13 +100,18 @@ def searchUCS(name, startState):
     while openList != []:
 
         counter += 1
-        print("\n\n--------------------------------------------------------------------")
-        print("start of while loop")
-        print("There are " + str(len(openList)) + " elements in openlist")
+        #print("\n\n--------------------------------------------------------------------")
+        #print("start of while loop")
+        #print("There are " + str(len(openList)) + " elements in openlist")
         current = openList.pop(0)
-        print("There are " + str(len(openList)) + " elements in openlist")
+        #print("There are " + str(len(openList)) + " elements in openlist")
 
-        print(current.state)
+        #print(current.state)
+
+        #Print to search list
+        fs = open(searchFileName, "a")
+        fs.write("0\t"+str(current.cost)+"\t0\t"+current.state+"\n")
+        fs.close()
 
         if rh.isSolution(current.state):
             #We found it
@@ -132,14 +137,6 @@ def searchUCS(name, startState):
             f.write(current.state[30:36] + "\n")
             f.write("\n")
             f.close()
-
-            #TO DO ADD TO RESULT FILE
-            #
-            #
-            #
-            #
-            #
-            #
 
             #Do this so we stop looking
             return "Solution found: " + str(solution)
@@ -189,11 +186,6 @@ def searchUCS(name, startState):
             #Add current to closed list
             closedList.append(current)
 
-            #DEBUG PRINT
-            print("There are " + str(len(children)) + " nodes in children list")
-            for child in children:
-                print(child.state)
-
             #Check if children are in closed
             uniqueChildren = copy.deepcopy(children)
             for child in children:
@@ -230,148 +222,212 @@ def searchUCS(name, startState):
             children = copy.deepcopy(uniqueChildren)
 
             #Insert in queue according to cost
-            print("There are " + str(len(openList)) + " nodes in open list")
-            print("Inserting "+str(len(children))+" nodes in open list")
+            #print("There are " + str(len(openList)) + " nodes in open list")
+            #print("Inserting "+str(len(children))+" nodes in open list")
             for child in children:
                 if len(openList) == 0:
-                    print("inserted 1")
-                    print("Inserted state:" + child.state)
+                    #print("inserted 1")
+                    #print("Inserted state:" + child.state)
                     openList.append(child)
                 else:
                     inserted = False
                     for i in range(0, len(openList)):
                         if child.cost <= openList[i].cost:
-                            print("inserted 2")
-                            print("Inserted state:" + child.state)
+                            #print("inserted 2")
+                            #print("Inserted state:" + child.state)
                             openList.insert(i, child)
                             inserted = True
                             break
 
                     if not inserted:
                         openList.append(child)
-                        print("inserted 3")
-                        print("Inserted state:"+child.state)
+                        #print("inserted 3")
+                        #print("Inserted state:"+child.state)
 
 
 
-            print("There are " + str(len(closedList)) + " nodes in closed list")
-            print("There are " + str(len(openList)) + " nodes in open list")
+            #print("There are " + str(len(closedList)) + " nodes in closed list")
+            #print("There are " + str(len(openList)) + " nodes in open list")
 
 
     #NO solution was found
-    #TO DO - Print solution file with no sol
     f = open(solFileName, "a")
     f.write("Runtime: " + str(time.time() - st) + "\n")
     f.write("Length of search path: " + str(counter) + "\n")
     f.write("No solution found")
     f.close()
 
-
-    print("no solution")
     return "No solution"
 
 def searchGBFS(name, startState):
     # Setting files for writing as we go
     algoName = "GBFS"
+    print("search GBFS")
 
     for heur in heurList:
 
-        solFileName = algoName + "-sol-"+ str(heur) + name + ".txt"
+        print("calculating sols with h " + str(heurList.index(heur)+1) + name)
 
-        searchFileName = algoName + "-search-" + str(heur) + name + ".txt"
+        solFileName = algoName + "-sol-h"+ str(heurList.index(heur)+1) + "-" + name + ".txt"
+
+        searchFileName = algoName + "-search-h" + str(heurList.index(heur)+1) + "-" + name + ".txt"
 
         # Setting up lists
-        openList = [SearchNode(startState, 0, "", "none", heur(startState))]
+        openList = [SearchNode(startState, 0, "-", "none", heur(startState))]
         closedList = []
 
         # Counter to know how many nodes we explore
         counter = 0
-        solutionFound = False
+
+        solutionFound= False
+
+        # Start the clock
+        st = time.time()
+
+        # Print header
+        f = open(solFileName, "a")
+        f.write("Initial configuration of the board: " + startState)
+        f.write("\n\n")
+        f.write(startState[0:6] + "\n")
+        f.write(startState[6:12] + "\n")
+        f.write(startState[12:18] + "\n")
+        f.write(startState[18:24] + "\n")
+        f.write(startState[24:30] + "\n")
+        f.write(startState[30:36] + "\n")
+        f.write("\n")
+        f.write("Fuel available to each car: \t")
+        for car in rh.listOfCars(startState):
+            f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
+
+        f.write("\n\n")
+        f.close()
 
         while openList != []:
 
             counter += 1
-
+            #print("\n\n--------------------------------------------------------------------")
+            # print("start of while loop")
+            # print("There are " + str(len(openList)) + " elements in openlist")
             current = openList.pop(0)
+            # print("There are " + str(len(openList)) + " elements in openlist")
+
+            # print(current.state)
+
+            # Print to search list
+            fs = open(searchFileName, "a")
+            fs.write("0\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
+            fs.close()
+
 
             if rh.isSolution(current.state):
                 # We found it
                 solution = returnSolutionPath(current)
-                print(solution)
+                solutionString = solutionAsString(solution)
+                print(solutionString)
                 # TO DO SOLUTION FILE
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
+                f = open(solFileName, "a")
+                f.write("Runtime: " + str(time.time() - st) + "\n")
+                f.write("Length of search path: " + str(counter) + "\n")
+                f.write("Length of solution path: " + str(len(solution)) + "\n")
+                f.write("Solution path: " + solutionString + "\n\n")
+                for node in solution:
+                    f.write(
+                        node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
+
+                # Final state
+                f.write("\n\n")
+                f.write(current.state[0:6] + "\n")
+                f.write(current.state[6:12] + "\n")
+                f.write(current.state[12:18] + "\n")
+                f.write(current.state[18:24] + "\n")
+                f.write(current.state[24:30] + "\n")
+                f.write(current.state[30:36] + "\n")
+                f.write("\n")
+                f.close()
 
                 # Do this so we stop looking
-                openList = []
                 solutionFound = True
-
+                break
             else:
                 # Children of current
                 children = []
                 activeCars = rh.listOfCars(current.state)
+                # print("There are " + str(len(activeCars)) + " elements in list of cars")
                 for car in activeCars:
                     # Check if we can move right
+                    # print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeRight(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeRight(car, current.state)):
-                            newState = rh.moveCarRight(car, current.state, dist)
-                            children.append(SearchNode(newState ,
+                        for dist in range(1, rh.getCarRangeRight(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tright\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move left
+                    # print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                     if rh.getCarRangeLeft(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeLeft(car, current.state)):
-                            newState = rh.moveCarLeft(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeLeft(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tleft\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move up
+                    # print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                     if rh.getCarRangeUp(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeUp(car, current.state)):
-                            newState = rh.moveCarUp(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeUp(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tup\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move down
+                    # print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeDown(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeDown(car, current.state)):
-                            newState = rh.moveCarDown(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeDown(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tdown\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
 
                 # Add current to closed list
                 closedList.append(current)
 
                 # Check if children are in closed
+                uniqueChildren = copy.deepcopy(children)
                 for child in children:
+                    # print("Checking child: " + child.state + " vs closedList\n")
                     for node in closedList:
+                        # print("COmparing " + child.state + " and " + node.state)
                         if rh.areStatesSame(child.state, node.state):
-                            children.remove(child)
+                            # print("states are the same")
+                            for elem in uniqueChildren:
+                                if rh.areStatesSame(elem.state, child.state):
+                                    # print("Removing child")
+                                    uniqueChildren.remove(elem)
+                            break
+
+                children = copy.deepcopy(uniqueChildren)
 
                 # Check if children are in open
+                uniqueChildren = copy.deepcopy(children)
                 for child in children:
+                    # print("Checking child: " + child.state + " vs openList")
                     for node in openList:
+                        # print("COmparing "+ child.state + " and "+ node.state)
                         if rh.areStatesSame(child.state, node.state):
-                            children.remove(child)
+                            # print("States are the same")
+                            for elem in uniqueChildren:
+                                if rh.areStatesSame(elem.state, child.state):
+                                    # print("Removing child")
+                                    uniqueChildren.remove(elem)
+                            break
+
+                children = copy.deepcopy(uniqueChildren)
 
                 # Insert in queue according to heur
+                timerstart = time.time()
                 for child in children:
                     if len(openList) == 0:
                         openList.append(child)
@@ -379,17 +435,16 @@ def searchGBFS(name, startState):
                         for i in range(0, len(openList)):
                             if child.heur <= openList[i].heur:
                                 openList.insert(i, child)
+                timerend = time.time()
+                print("Insert in queue took: "+str(timerend-timerstart))
 
         if not solutionFound:
             # NO solution was found
-            # TO DO - Print solution file with no sol
-            #
-            #
-            #
-            #
-            #
-            #
-            #
+            f = open(solFileName, "a")
+            f.write("Runtime: " + str(time.time() - st) + "\n")
+            f.write("Length of search path: " + str(counter) + "\n")
+            f.write("No solution found")
+            f.close()
 
             print("no solution")
 
@@ -398,102 +453,167 @@ def searchA(name, startState):
     # Setting files for writing as we go
     algoName = "A*"
 
+    print("search A")
     for heur in heurList:
 
-        solFileName = algoName + "-sol-" + str(heur) + name + ".txt"
+        print("calculating sols with h " + str(heurList.index(heur) + 1) + name)
 
-        searchFileName = algoName + "-search-" + str(heur) + name + ".txt"
+        solFileName = algoName + "-sol-h" + str(heurList.index(heur) + 1) + name + ".txt"
+
+        searchFileName = algoName + "-search-" + str(heurList.index(heur)+1) + "-" + name + ".txt"
 
         # Setting up lists
-        openList = [SearchNode(startState, 0, "", "none", heur(startState))]
+        openList = [SearchNode(startState, 0, "-", "none", heur(startState))]
         closedList = []
 
         # Counter to know how many nodes we explore
         counter = 0
+
         solutionFound = False
+
+        # Start the clock
+        st = time.time()
+
+        # Print header
+        f = open(solFileName, "a")
+        f.write("Initial configuration of the board: " + startState)
+        f.write("\n\n")
+        f.write(startState[0:6] + "\n")
+        f.write(startState[6:12] + "\n")
+        f.write(startState[12:18] + "\n")
+        f.write(startState[18:24] + "\n")
+        f.write(startState[24:30] + "\n")
+        f.write(startState[30:36] + "\n")
+        f.write("\n")
+        f.write("Fuel available to each car: \t")
+        for car in rh.listOfCars(startState):
+            f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
+
+        f.write("\n\n")
+        f.close()
 
         while openList != []:
 
             counter += 1
-
+            #print("\n\n--------------------------------------------------------------------")
+            # print("start of while loop")
+            # print("There are " + str(len(openList)) + " elements in openlist")
             current = openList.pop(0)
+            # print("There are " + str(len(openList)) + " elements in openlist")
+
+            # print(current.state)
+
+            # Print to search list
+            fs = open(searchFileName, "a")
+            fs.write(str(heur(current.state) + str(current.cost)) +"\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
+            fs.close()
 
             if rh.isSolution(current.state):
                 # We found it
                 solution = returnSolutionPath(current)
-                print(solution)
+                solutionString = solutionAsString(solution)
+                print(solutionString)
                 # TO DO SOLUTION FILE
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
-                #
+                f = open(solFileName, "a")
+                f.write("Runtime: " + str(time.time() - st) + "\n")
+                f.write("Length of search path: " + str(counter) + "\n")
+                f.write("Length of solution path: " + str(len(solution)) + "\n")
+                f.write("Solution path: " + solutionString + "\n\n")
+                for node in solution:
+                    f.write(
+                        node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
+
+                # Final state
+                f.write("\n\n")
+                f.write(current.state[0:6] + "\n")
+                f.write(current.state[6:12] + "\n")
+                f.write(current.state[12:18] + "\n")
+                f.write(current.state[18:24] + "\n")
+                f.write(current.state[24:30] + "\n")
+                f.write(current.state[30:36] + "\n")
+                f.write("\n")
+                f.close()
 
                 # Do this so we stop looking
-                openList = []
                 solutionFound = True
-
+                break
             else:
                 # Children of current
                 children = []
                 activeCars = rh.listOfCars(current.state)
+                # print("There are " + str(len(activeCars)) + " elements in list of cars")
                 for car in activeCars:
                     # Check if we can move right
+                    # print("Range right: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeRight(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeRight(car, current.state)):
-                            newState = rh.moveCarRight(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeRight(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarRight(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tright\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move left
+                    # print("Range left: " + str(rh.getCarRangeLeft(car, current.state)))
                     if rh.getCarRangeLeft(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeLeft(car, current.state)):
-                            newState = rh.moveCarLeft(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeLeft(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarLeft(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tleft\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move up
+                    # print("Range up: " + str(rh.getCarRangeUp(car, current.state)))
                     if rh.getCarRangeUp(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeUp(car, current.state)):
-                            newState = rh.moveCarUp(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeUp(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarUp(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tup\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
                     # Check if we can move down
+                    # print("Range down: " + str(rh.getCarRangeRight(car, current.state)))
                     if rh.getCarRangeDown(car, current.state) > 0:
-                        for dist in range(1, rh.getCarRangeDown(car, current.state)):
-                            newState = rh.moveCarDown(car, current.state, dist)
-                            children.append(SearchNode(newState,
+                        for dist in range(1, rh.getCarRangeDown(car, current.state) + 1):
+                            children.append(SearchNode(rh.moveCarDown(car, current.state, dist),
                                                        current.cost + dist,
                                                        str(car) + "\tdown\t" + str(dist),
                                                        current,
-                                                       heur(newState)))
+                                                       0))
 
                 # Add current to closed list
                 closedList.append(current)
 
                 # Check if children are in closed
+                uniqueChildren = copy.deepcopy(children)
                 for child in children:
+                    # print("Checking child: " + child.state + " vs closedList\n")
                     for node in closedList:
+                        # print("COmparing " + child.state + " and " + node.state)
                         if rh.areStatesSame(child.state, node.state):
-                            children.remove(child)
+                            # print("states are the same")
+                            for elem in uniqueChildren:
+                                if rh.areStatesSame(elem.state, child.state):
+                                    # print("Removing child")
+                                    uniqueChildren.remove(elem)
+                            break
+
+                children = copy.deepcopy(uniqueChildren)
 
                 # Check if children are in open
+                uniqueChildren = copy.deepcopy(children)
                 for child in children:
+                    # print("Checking child: " + child.state + " vs openList")
                     for node in openList:
+                        # print("COmparing "+ child.state + " and "+ node.state)
                         if rh.areStatesSame(child.state, node.state):
-                            children.remove(child)
+                            # print("States are the same")
+                            for elem in uniqueChildren:
+                                if rh.areStatesSame(elem.state, child.state):
+                                    # print("Removing child")
+                                    uniqueChildren.remove(elem)
+                            break
+
+                children = copy.deepcopy(uniqueChildren)
 
                 # Insert in queue according to f = cost + heur
                 for child in children:
@@ -506,14 +626,11 @@ def searchA(name, startState):
 
         if not solutionFound:
             # NO solution was found
-            # TO DO - Print solution file with no sol
-            #
-            #
-            #
-            #
-            #
-            #
-            #
+            f = open(solFileName, "a")
+            f.write("Runtime: " + str(time.time() - st) + "\n")
+            f.write("Length of search path: " + str(counter) + "\n")
+            f.write("No solution found")
+            f.close()
 
             print("no solution")
 
