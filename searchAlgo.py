@@ -3,6 +3,9 @@ import time
 import copy
 
 def heur1(state):
+    if 'A' not in state:
+        return 0
+
     aPos = state.index('A')
     heur = 0
     for i in range(0, 4 - aPos % 6):
@@ -12,27 +15,33 @@ def heur1(state):
 
 
 def heur2(state):
+    if 'A' not in state:
+        return 0
     aPos = state.index('A')
     heur = 0
     carsPassed = []
     for i in range(0, 4 - aPos % 6):
-        if not (state[aPos + 2 + i] == '.' | state[aPos + 2 + i] in carsPassed):
+        if not ((state[aPos + 2 + i] == '.') | (state[aPos + 2 + i] in carsPassed)):
             carsPassed.append(state[aPos + 2 + i])
             heur += 1
     return heur
 
 
 def heur3(state):
+    if 'A' not in state:
+        return 0
     lam = 3
     return lam * heur1(state)
 
 
 def heur4(state):
+    if 'A' not in state:
+        return 0
     aPos = state.index('A')
     heur = 0
     carsPassed = []
     for i in range(0, 4 - aPos % 6):
-        if not (state[aPos + 2 + i] == '.' | state[aPos + 2 + i] in carsPassed):
+        if not ((state[aPos + 2 + i] == '.') | (state[aPos + 2 + i] in carsPassed)):
             carsPassed.append(state[aPos + 2 + i])
             heur += 1
 
@@ -427,16 +436,20 @@ def searchGBFS(name, startState):
                 children = copy.deepcopy(uniqueChildren)
 
                 # Insert in queue according to heur
-                timerstart = time.time()
+
                 for child in children:
+                    inserted = False
                     if len(openList) == 0:
                         openList.append(child)
                     else:
                         for i in range(0, len(openList)):
                             if child.heur <= openList[i].heur:
                                 openList.insert(i, child)
-                timerend = time.time()
-                print("Insert in queue took: "+str(timerend-timerstart))
+                                inserted = True
+                                break
+
+                        if not inserted:
+                            openList.append(child)
 
         if not solutionFound:
             # NO solution was found
@@ -451,7 +464,7 @@ def searchGBFS(name, startState):
 
 def searchA(name, startState):
     # Setting files for writing as we go
-    algoName = "A*"
+    algoName = "A"
 
     print("search A")
     for heur in heurList:
@@ -505,7 +518,7 @@ def searchA(name, startState):
 
             # Print to search list
             fs = open(searchFileName, "a")
-            fs.write(str(heur(current.state) + str(current.cost)) +"\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
+            fs.write(str(heur(current.state)) + str(current.cost) +"\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
             fs.close()
 
             if rh.isSolution(current.state):
@@ -617,12 +630,18 @@ def searchA(name, startState):
 
                 # Insert in queue according to f = cost + heur
                 for child in children:
+                    inserted = False
                     if len(openList) == 0:
                         openList.append(child)
                     else:
                         for i in range(0, len(openList)):
-                            if child.heur+child.cost <= openList[i].heur+openList.heur:
+                            if child.heur+child.cost <= openList[i].heur + openList[i].cost:
                                 openList.insert(i, child)
+                                inserted = True
+                                break
+
+                        if not inserted:
+                            openList.append(child)
 
         if not solutionFound:
             # NO solution was found

@@ -1,0 +1,14 @@
+Initial configuration of the board: IJBBCCIJDDL.IJAAL.EEK.L...KFF..GGHH. F0 G6
+
+IJBBCC
+IJDDL.
+IJAAL.
+EEK.L.
+..KFF.
+.GGHH.
+
+Fuel available to each car: 	L: 100, E: 100, G: 6, I: 100, A: 100, K: 100, D: 100, B: 100, F: 0, H: 100, J: 100, C: 100, 
+
+Runtime: 7.645299196243286
+Length of search path: 2527
+No solution found

@@ -7,48 +7,21 @@ GDDK.M
 GH.KL.
 GHFFL.
 
-Fuel available to each car: 	C: 100, J: 100, K: 100, M: 100, G: 100, L: 100, F: 100, I: 100, A: 100, H: 100, B: 100, D: 100, 
+Fuel available to each car: 	D: 100, G: 100, A: 100, B: 100, L: 100, M: 100, F: 100, J: 100, C: 100, K: 100, I: 100, H: 100, 
 
-Runtime: 0.004001617431640625
+Runtime: 0.005002260208129883
 Length of search path: 6
 Length of solution path: 2
-Solution path: M	down	1, A	right	1, 
+Solution path: G	up	1, A	right	1, 
 
-M	down	1	100	BBIJ....IJCC..IAA.GDDK.MGH.KLMGHFFL.
-A	right	1	100	BBIJ....IJCC..I...GDDK.MGH.KLMGHFFL.
+G	up	1	100	BBIJ....IJCCG.IAA.GDDK..GH.KL..HFFL.
+A	right	1	100	BBIJ....IJCCG.I...GDDK..GH.KL..HFFL.
 
-
-BBIJ..
-..IJCC
-..I...
-GDDK.M
-GH.KLM
-GHFFL.
-
-Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
 
 BBIJ..
 ..IJCC
-..IAAM
-GDDK.M
+G.I...
+GDDK..
 GH.KL.
-GHFFL.
-
-Fuel available to each car: 	L: 100, A: 100, H: 100, I: 100, C: 100, B: 100, F: 100, G: 100, M: 100, K: 100, D: 100, J: 100, 
-
-Runtime: 0.006001710891723633
-Length of search path: 8
-Length of solution path: 2
-Solution path: L	up	1, A	right	1, 
-
-L	up	1	100	BBIJ....IJCC..IAA.GDDKL.GH.KL.GHFF..
-A	right	1	100	BBIJ....IJCC..I...GDDKL.GH.KL.GHFF..
-
-
-BBIJ..
-..IJCC
-..I...
-GDDKL.
-GH.KL.
-GHFF..
+.HFFL.
 

@@ -1,0 +1,87 @@
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	C: 100, M: 100, L: 100, H: 100, I: 100, K: 100, D: 100, J: 100, B: 100, G: 100, A: 100, F: 100, 
+
+Runtime: 0.005001068115234375
+Length of search path: 6
+Length of solution path: 5
+Solution path: G	up	2, A	left	1, A	left	1, A	left	1, A	right	4, 
+
+G	up	2	100	BBIJ..G.IJCCG.IAA.GDDK...H.KL..HFFL.
+A	left	1	100	BBIJ..G.IJCCG.AA..GDDK...H.KL..HFFL.
+A	left	1	100	BBIJ..G.IJCCGAA...GDDK...H.KL..HFFL.
+A	left	1	100	BBIJ..G.IJCCAA....GDDK...H.KL..HFFL.
+A	right	4	100	BBIJ..G.IJCC......GDDK...H.KL..HFFL.
+
+
+BBIJ..
+G.IJCC
+......
+GDDK..
+.H.KL.
+.HFFL.
+
+Initial configuration of the board: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+
+BBIJ..
+..IJCC
+..IAAM
+GDDK.M
+GH.KL.
+GHFFL.
+
+Fuel available to each car: 	H: 100, K: 100, G: 100, L: 100, F: 100, D: 100, C: 100, B: 100, A: 100, J: 100, I: 100, M: 100, 
+
+Runtime: 0.05001068115234375
+Length of search path: 33
+Length of solution path: 32
+Solution path: M	down	2, M	up	2, A	left	1, A	left	1, J	down	1, L	up	2, F	left	1, J	up	1, A	left	1, I	down	1, J	down	1, B	right	4, I	up	1, J	up	1, A	right	2, F	left	1, F	right	4, G	down	1, L	down	1, A	left	1, J	down	1, G	up	3, L	up	1, J	up	1, A	left	1, I	down	1, J	down	1, L	down	1, I	up	1, A	right	1, J	up	1, A	right	3, 
+
+M	down	2	100	BBIJ....IJCC..IAA.GDDK..GH.KLMGHFFLM
+M	up	2	100	BBIJ....IJCC..IAA.GDDK..GH.KL.GHFFL.
+A	left	1	100	BBIJ....IJCC..AA..GDDK..GH.KL.GHFFL.
+A	left	1	100	BBIJ....IJCC.AA...GDDK..GH.KL.GHFFL.
+J	down	1	100	BBI.....IJCC.AAJ..GDDK..GH.KL.GHFFL.
+L	up	2	100	BBI.....IJCC.AAJL.GDDKL.GH.K..GHFF..
+F	left	1	100	BBI.....IJCC.AAJL.GDDKL.GH.K..GFF...
+J	up	1	100	BBIJ....IJCC.AA.L.GDDKL.GH.K..GFF...
+A	left	1	100	BBIJ....IJCCAA..L.GDDKL.GH.K..GFF...
+I	down	1	100	BB.J....IJCCAAI.L.GDDKL.GH.K..GFF...
+J	down	1	100	BB......IJCCAAIJL.GDDKL.GH.K..GFF...
+B	right	4	100	....BB..IJCCAAIJL.GDDKL.GH.K..GFF...
+I	up	1	100	..I.BB..IJCCAA.JL.GDDKL.GH.K..GFF...
+J	up	1	100	..IJBB..IJCCAA..L.GDDKL.GH.K..GFF...
+A	right	2	100	..IJBB..IJCC..AAL.GDDKL.GH.K..GFF...
+F	left	1	100	..IJBB..IJCC..AAL.GDDKL.GH.K..FF....
+F	right	4	100	..IJBB..IJCC..AAL.GDDKL.GH.K......FF
+G	down	1	100	..IJBB..IJCC..AAL..DDKL.GH.K..G...FF
+L	down	1	100	..IJBB..IJCC..AA...DDKL.GH.KL.G...FF
+A	left	1	100	..IJBB..IJCC.AA....DDKL.GH.KL.G...FF
+J	down	1	100	..I.BB..IJCC.AAJ...DDKL.GH.KL.G...FF
+G	up	3	100	..I.BBG.IJCCGAAJ...DDKL..H.KL.....FF
+L	up	1	100	..I.BBG.IJCCGAAJL..DDKL..H.K......FF
+J	up	1	100	..IJBBG.IJCCGAA.L..DDKL..H.K......FF
+A	left	1	100	..IJBBG.IJCCAA..L..DDKL..H.K......FF
+I	down	1	100	...JBBG.IJCCAAI.L..DDKL..H.K......FF
+J	down	1	100	....BBG.IJCCAAIJL..DDKL..H.K......FF
+L	down	1	100	....BBG.IJCCAAIJ...DDKL..H.KL.....FF
+I	up	1	100	..I.BBG.IJCCAA.J...DDKL..H.KL.....FF
+A	right	1	100	..I.BBG.IJCC.AAJ...DDKL..H.KL.....FF
+J	up	1	100	..IJBBG.IJCC.AA....DDKL..H.KL.....FF
+A	right	3	100	..IJBBG.IJCC.......DDKL..H.KL.....FF
+
+
+..IJBB
+G.IJCC
+......
+.DDKL.
+.H.KL.
+....FF
+

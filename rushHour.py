@@ -231,8 +231,8 @@ def generateRandomProblem():
     state.append("  ")
     #Place ambulance
     starting_spot = random.choice([0,1,2])
-    state[12+starting_spot]='A'
-    state[13+starting_spot]='A'
+    state = replacer(state, 'A', 12+starting_spot)
+    state = replacer(state, 'A', 13+starting_spot)
 
     #Decide what cars will be placed
     possible_cars = ['B','C','D','E','F','G','H','I','J','K']
@@ -241,11 +241,11 @@ def generateRandomProblem():
             #Place cars to be placed
             count = 0
             isCarPlaced = False
-            while not isCarPlaced & count < 10:
+            while (not isCarPlaced) & (count < 10):
 
                 count+=1
 
-                isCarVertical = coinFlip()
+                isCarVert = coinFlip()
                 size = random.choice([2,3])
 
                 #Choose spot
@@ -255,7 +255,7 @@ def generateRandomProblem():
                 #Check if fits
                 is_placeable = True
                 if state[row*6+column] == '.':
-                    if isCarVertical:
+                    if isCarVert:
                         if (row+size)*6+column < 36:
                             for i in range(1,size-1):
                                 if state[(row+i)*6+column] != '.':
@@ -276,9 +276,9 @@ def generateRandomProblem():
                     #Places
                     for i in range(0,size):
                         if isCarVertical:
-                            state[(row+i)*6+column]=car
+                            state = replacer(state, car, (row+i)*6+column)
                         else:
-                            state[row * 6 + column + i] = car
+                            state = replacer(state, car, row * 6 + column + i)
                     #Gas info
                     if coinFlip():
                         state.append(car)

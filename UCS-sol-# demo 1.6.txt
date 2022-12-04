@@ -7,52 +7,23 @@ EAAG.I
 DDF..I
 ..F...
 
-Fuel available to each car: 	C: 100, G: 100, F: 100, E: 100, I: 100, A: 100, H: 100, B: 100, D: 100, 
+Fuel available to each car: 	D: 100, G: 100, A: 100, B: 100, F: 100, E: 100, C: 100, I: 100, H: 100, 
 
-Runtime: 1.6593263149261475
-Length of search path: 655
+Runtime: 1.6643164157867432
+Length of search path: 653
 Length of solution path: 4
-Solution path: E	down	1, C	right	1, G	down	3, A	right	3, 
+Solution path: B	right	1, C	right	1, G	down	3, A	right	3, 
 
-E	down	1	100	BB.G.H...G.HEAAG..E.FCC.DDF.....F...
-C	right	1	100	BB.G.H...G.HEAAG..E.F.CCDDF.....F...
-G	down	3	100	BB...H.....HEAA...E.FGCCDDFG....FG..
-A	right	3	100	BB...H.....HE.....E.FGCCDDFG....FG..
+B	right	1	100	.BBG.HE..G.HEAAG....FCC.DDF.....F...
+C	right	1	100	.BBG.HE..G.HEAAG....F.CCDDF.....F...
+G	down	3	100	.BB..HE....HEAA.....FGCCDDFG....FG..
+A	right	3	100	.BB..HE....HE.......FGCCDDFG....FG..
 
 
-BB...H
-.....H
+.BB..H
+E....H
 E.....
-E.FGCC
-DDFG..
-..FG..
-
-Initial configuration of the board: BB.G.HE..G.HEAAG.I..FCCIDDF..I..F...
-
-BB.G.H
-E..G.H
-EAAG.I
-..FCCI
-DDF..I
-..F...
-
-Fuel available to each car: 	E: 100, A: 100, H: 100, C: 100, B: 100, F: 100, G: 100, D: 100, I: 100, 
-
-Runtime: 1.748396873474121
-Length of search path: 672
-Length of solution path: 4
-Solution path: E	down	1, C	right	1, G	down	3, A	right	3, 
-
-E	down	1	100	BB.G.H...G.HEAAG..E.FCC.DDF.....F...
-C	right	1	100	BB.G.H...G.HEAAG..E.F.CCDDF.....F...
-G	down	3	100	BB...H.....HEAA...E.FGCCDDFG....FG..
-A	right	3	100	BB...H.....HE.....E.FGCCDDFG....FG..
-
-
-BB...H
-.....H
-E.....
-E.FGCC
+..FGCC
 DDFG..
 ..FG..
 

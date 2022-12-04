@@ -7,21 +7,8 @@ EEK.L.
 ..KFF.
 .GGHH.
 
-Fuel available to each car: 	J: 100, C: 100, K: 100, G: 6, F: 0, I: 100, E: 100, A: 100, L: 100, H: 100, B: 100, D: 100, 
+Fuel available to each car: 	D: 100, G: 6, A: 100, K: 100, B: 100, F: 0, E: 100, J: 100, C: 100, L: 100, I: 100, H: 100, 
 
-Runtime: 7.444707870483398
-Length of search path: 2527
-No solution foundInitial configuration of the board: IJBBCCIJDDL.IJAAL.EEK.L...KFF..GGHH. F0 G6
-
-IJBBCC
-IJDDL.
-IJAAL.
-EEK.L.
-..KFF.
-.GGHH.
-
-Fuel available to each car: 	L: 100, A: 100, E: 100, I: 100, H: 100, C: 100, B: 100, F: 0, G: 6, K: 100, D: 100, J: 100, 
-
-Runtime: 7.378432512283325
+Runtime: 7.387681484222412
 Length of search path: 2527
 No solution found

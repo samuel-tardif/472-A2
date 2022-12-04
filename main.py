@@ -21,10 +21,8 @@ for i, line in enumerate(lines):
 
 
 for name in problems:
-    sa.searchUCS(name, problems[name])
-for name in problems:
-    sa.searchGBFS(name, problems[name])
-for name in problems:
+#   sa.searchUCS(name, problems[name])
+#   sa.searchGBFS(name, problems[name])
     sa.searchA(name, problems[name])
 
 
