@@ -226,22 +226,33 @@ def printState(state):
 
 
 def generateRandomProblem():
-    state = ["."]*36
+
+    state = ""
+    for i in range(0,36):
+        state = state+"."
+
     #add spacing for fuel
-    state.append("  ")
+    state = state +"  "
+
     #Place ambulance
     starting_spot = random.choice([0,1,2])
     state = replacer(state, 'A', 12+starting_spot)
     state = replacer(state, 'A', 13+starting_spot)
 
+    #print(state)
+
     #Decide what cars will be placed
     possible_cars = ['B','C','D','E','F','G','H','I','J','K']
     for car in possible_cars:
         if coinFlip():
-            #Place cars to be placed
+
+            #print("Trying to place car: " + car)
+
             count = 0
+
             isCarPlaced = False
-            while (not isCarPlaced) & (count < 10):
+            #Will try to place car until we find spot
+            while (not isCarPlaced) & (count < 50):
 
                 count+=1
 
@@ -252,20 +263,22 @@ def generateRandomProblem():
                 row = random.randint(0,5)
                 column = random.randint(0,5)
 
+                #print("Trying to fit car size: "+str(size)+", Vertical: "+str(isCarVert)+", at coord: row: "+str(row+1)+", column: "+str(column+1))
+                #print(printState(state))
                 #Check if fits
                 is_placeable = True
                 if state[row*6+column] == '.':
                     if isCarVert:
-                        if (row+size)*6+column < 36:
-                            for i in range(1,size-1):
+                        if ((row+size-1)*6+column) < 36:
+                            for i in range(1,size):
                                 if state[(row+i)*6+column] != '.':
                                     is_placeable = False
                         else:
                             is_placeable = False
                     else:
-                        if column%6+size > 6 :
-                            for i in range(1,size-1):
-                                if state[(row)*6+column+i] != '.':
+                        if column % 6 + size <= 6:
+                            for i in range(1, size):
+                                if state[row*6+column+i] != '.':
                                     is_placeable = False
                         else:
                             is_placeable = False
@@ -274,15 +287,21 @@ def generateRandomProblem():
 
                 #If it can be placed, do so
                     #Places
-                    for i in range(0,size):
-                        if isCarVertical:
+                if is_placeable:
+                    #print("Is placeable")
+                    for i in range(0, size):
+                        if isCarVert:
                             state = replacer(state, car, (row+i)*6+column)
                         else:
                             state = replacer(state, car, row * 6 + column + i)
-                    #Gas info
+
+                    # Gas info
                     if coinFlip():
-                        state.append(car)
-                        state.append(str(random.randint(0, 5)))
+                        state = state + car
+                        state = state + str(random.randint(0, 5))
+                    break
+
+    return state
 
 #GENERAL UTIL FUNCTIONS
 def coinFlip():

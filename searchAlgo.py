@@ -88,23 +88,25 @@ def searchUCS(name, startState):
     #Start the clock
     st = time.time()
 
-    #Print header
-    f = open(solFileName, "a")
-    f.write("Initial configuration of the board: "+startState)
-    f.write("\n\n")
-    f.write(startState[0:6]+"\n")
-    f.write(startState[6:12] + "\n")
-    f.write(startState[12:18] + "\n")
-    f.write(startState[18:24] + "\n")
-    f.write(startState[24:30] + "\n")
-    f.write(startState[30:36] + "\n")
-    f.write("\n")
-    f.write("Fuel available to each car: \t")
-    for car in rh.listOfCars(startState):
-        f.write(car+": " + str(rh.getFuelForCar(car, startState)) + ", ")
+    #Only print sol file for demo problems
+    if "demo" in name:
+        #Print header
+        f = open(solFileName, "a")
+        f.write("Initial configuration of the board: "+startState)
+        f.write("\n\n")
+        f.write(startState[0:6]+"\n")
+        f.write(startState[6:12] + "\n")
+        f.write(startState[12:18] + "\n")
+        f.write(startState[18:24] + "\n")
+        f.write(startState[24:30] + "\n")
+        f.write(startState[30:36] + "\n")
+        f.write("\n")
+        f.write("Fuel available to each car: \t")
+        for car in rh.listOfCars(startState):
+            f.write(car+": " + str(rh.getFuelForCar(car, startState)) + ", ")
 
-    f.write("\n\n")
-    f.close()
+        f.write("\n\n")
+        f.close()
 
     while openList != []:
 
@@ -117,35 +119,40 @@ def searchUCS(name, startState):
 
         #print(current.state)
 
-        #Print to search list
-        fs = open(searchFileName, "a")
-        fs.write("0\t"+str(current.cost)+"\t0\t"+current.state+"\n")
-        fs.close()
+        # Only print sol file for demo problems
+        if "demo" in name:
+            #Print to search list
+            fs = open(searchFileName, "a")
+            fs.write("0\t"+str(current.cost)+"\t0\t"+current.state+"\n")
+            fs.close()
 
         if rh.isSolution(current.state):
             #We found it
             solution = returnSolutionPath(current)
             solutionString = solutionAsString(solution)
             print(solutionString)
-            #TO DO SOLUTION FILE
-            f = open(solFileName, "a")
-            f.write("Runtime: "+ str(time.time()-st)+"\n")
-            f.write("Length of search path: "+str(counter)+"\n")
-            f.write("Length of solution path: " + str(len(solution))+"\n")
-            f.write("Solution path: "+solutionString+"\n\n")
-            for node in solution:
-                f.write(node.move + "\t" + str(rh.getFuelForCar(node.move[0],node.state)) + "\t" + node.state + "\n")
 
-            #Final state
-            f.write("\n\n")
-            f.write(current.state[0:6] + "\n")
-            f.write(current.state[6:12] + "\n")
-            f.write(current.state[12:18] + "\n")
-            f.write(current.state[18:24] + "\n")
-            f.write(current.state[24:30] + "\n")
-            f.write(current.state[30:36] + "\n")
-            f.write("\n")
-            f.close()
+            # Only print sol file for demo problems
+            if "demo" in name:
+                #SOLUTION FILE
+                f = open(solFileName, "a")
+                f.write("Runtime: "+ str(time.time()-st)+"\n")
+                f.write("Length of search path: "+str(counter)+"\n")
+                f.write("Length of solution path: " + str(len(solution))+"\n")
+                f.write("Solution path: "+solutionString+"\n\n")
+                for node in solution:
+                    f.write(node.move + "\t" + str(rh.getFuelForCar(node.move[0],node.state)) + "\t" + node.state + "\n")
+
+                #Final state
+                f.write("\n\n")
+                f.write(current.state[0:6] + "\n")
+                f.write(current.state[6:12] + "\n")
+                f.write(current.state[12:18] + "\n")
+                f.write(current.state[18:24] + "\n")
+                f.write(current.state[24:30] + "\n")
+                f.write(current.state[30:36] + "\n")
+                f.write("\n")
+                f.close()
 
             #Do this so we stop looking
             return "Solution found: " + str(solution)
@@ -258,13 +265,14 @@ def searchUCS(name, startState):
             #print("There are " + str(len(closedList)) + " nodes in closed list")
             #print("There are " + str(len(openList)) + " nodes in open list")
 
-
-    #NO solution was found
-    f = open(solFileName, "a")
-    f.write("Runtime: " + str(time.time() - st) + "\n")
-    f.write("Length of search path: " + str(counter) + "\n")
-    f.write("No solution found")
-    f.close()
+    # Only print sol file for demo problems
+    if "demo" in name:
+        #NO solution was found
+        f = open(solFileName, "a")
+        f.write("Runtime: " + str(time.time() - st) + "\n")
+        f.write("Length of search path: " + str(counter) + "\n")
+        f.write("No solution found")
+        f.close()
 
     return "No solution"
 
@@ -293,23 +301,25 @@ def searchGBFS(name, startState):
         # Start the clock
         st = time.time()
 
-        # Print header
-        f = open(solFileName, "a")
-        f.write("Initial configuration of the board: " + startState)
-        f.write("\n\n")
-        f.write(startState[0:6] + "\n")
-        f.write(startState[6:12] + "\n")
-        f.write(startState[12:18] + "\n")
-        f.write(startState[18:24] + "\n")
-        f.write(startState[24:30] + "\n")
-        f.write(startState[30:36] + "\n")
-        f.write("\n")
-        f.write("Fuel available to each car: \t")
-        for car in rh.listOfCars(startState):
-            f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
+        # Only print sol file for demo problems
+        if "demo" in name:
+            # Print header
+            f = open(solFileName, "a")
+            f.write("Initial configuration of the board: " + startState)
+            f.write("\n\n")
+            f.write(startState[0:6] + "\n")
+            f.write(startState[6:12] + "\n")
+            f.write(startState[12:18] + "\n")
+            f.write(startState[18:24] + "\n")
+            f.write(startState[24:30] + "\n")
+            f.write(startState[30:36] + "\n")
+            f.write("\n")
+            f.write("Fuel available to each car: \t")
+            for car in rh.listOfCars(startState):
+                f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
 
-        f.write("\n\n")
-        f.close()
+            f.write("\n\n")
+            f.close()
 
         while openList != []:
 
@@ -322,10 +332,12 @@ def searchGBFS(name, startState):
 
             # print(current.state)
 
-            # Print to search list
-            fs = open(searchFileName, "a")
-            fs.write("0\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
-            fs.close()
+            # Only print sol file for demo problems
+            if "demo" in name:
+                # Print to search list
+                fs = open(searchFileName, "a")
+                fs.write("0\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
+                fs.close()
 
 
             if rh.isSolution(current.state):
@@ -333,26 +345,29 @@ def searchGBFS(name, startState):
                 solution = returnSolutionPath(current)
                 solutionString = solutionAsString(solution)
                 print(solutionString)
-                # TO DO SOLUTION FILE
-                f = open(solFileName, "a")
-                f.write("Runtime: " + str(time.time() - st) + "\n")
-                f.write("Length of search path: " + str(counter) + "\n")
-                f.write("Length of solution path: " + str(len(solution)) + "\n")
-                f.write("Solution path: " + solutionString + "\n\n")
-                for node in solution:
-                    f.write(
-                        node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
 
-                # Final state
-                f.write("\n\n")
-                f.write(current.state[0:6] + "\n")
-                f.write(current.state[6:12] + "\n")
-                f.write(current.state[12:18] + "\n")
-                f.write(current.state[18:24] + "\n")
-                f.write(current.state[24:30] + "\n")
-                f.write(current.state[30:36] + "\n")
-                f.write("\n")
-                f.close()
+                # Only print sol file for demo problems
+                if "demo" in name:
+                    # TO DO SOLUTION FILE
+                    f = open(solFileName, "a")
+                    f.write("Runtime: " + str(time.time() - st) + "\n")
+                    f.write("Length of search path: " + str(counter) + "\n")
+                    f.write("Length of solution path: " + str(len(solution)) + "\n")
+                    f.write("Solution path: " + solutionString + "\n\n")
+                    for node in solution:
+                        f.write(
+                            node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
+
+                    # Final state
+                    f.write("\n\n")
+                    f.write(current.state[0:6] + "\n")
+                    f.write(current.state[6:12] + "\n")
+                    f.write(current.state[12:18] + "\n")
+                    f.write(current.state[18:24] + "\n")
+                    f.write(current.state[24:30] + "\n")
+                    f.write(current.state[30:36] + "\n")
+                    f.write("\n")
+                    f.close()
 
                 # Do this so we stop looking
                 solutionFound = True
@@ -452,12 +467,14 @@ def searchGBFS(name, startState):
                             openList.append(child)
 
         if not solutionFound:
-            # NO solution was found
-            f = open(solFileName, "a")
-            f.write("Runtime: " + str(time.time() - st) + "\n")
-            f.write("Length of search path: " + str(counter) + "\n")
-            f.write("No solution found")
-            f.close()
+            # Only print sol file for demo problems
+            if "demo" in name:
+                # NO solution was found
+                f = open(solFileName, "a")
+                f.write("Runtime: " + str(time.time() - st) + "\n")
+                f.write("Length of search path: " + str(counter) + "\n")
+                f.write("No solution found")
+                f.close()
 
             print("no solution")
 
@@ -487,23 +504,25 @@ def searchA(name, startState):
         # Start the clock
         st = time.time()
 
-        # Print header
-        f = open(solFileName, "a")
-        f.write("Initial configuration of the board: " + startState)
-        f.write("\n\n")
-        f.write(startState[0:6] + "\n")
-        f.write(startState[6:12] + "\n")
-        f.write(startState[12:18] + "\n")
-        f.write(startState[18:24] + "\n")
-        f.write(startState[24:30] + "\n")
-        f.write(startState[30:36] + "\n")
-        f.write("\n")
-        f.write("Fuel available to each car: \t")
-        for car in rh.listOfCars(startState):
-            f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
+        # Only print sol file for demo problems
+        if "demo" in name:
+            # Print header
+            f = open(solFileName, "a")
+            f.write("Initial configuration of the board: " + startState)
+            f.write("\n\n")
+            f.write(startState[0:6] + "\n")
+            f.write(startState[6:12] + "\n")
+            f.write(startState[12:18] + "\n")
+            f.write(startState[18:24] + "\n")
+            f.write(startState[24:30] + "\n")
+            f.write(startState[30:36] + "\n")
+            f.write("\n")
+            f.write("Fuel available to each car: \t")
+            for car in rh.listOfCars(startState):
+                f.write(car + ": " + str(rh.getFuelForCar(car, startState)) + ", ")
 
-        f.write("\n\n")
-        f.close()
+            f.write("\n\n")
+            f.close()
 
         while openList != []:
 
@@ -516,36 +535,41 @@ def searchA(name, startState):
 
             # print(current.state)
 
-            # Print to search list
-            fs = open(searchFileName, "a")
-            fs.write(str(heur(current.state)) + str(current.cost) +"\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
-            fs.close()
+            # Only print sol file for demo problems
+            if "demo" in name:
+                # Print to search list
+                fs = open(searchFileName, "a")
+                fs.write(str(heur(current.state)) + str(current.cost) +"\t" + str(current.cost) + "\t" + str(heur(current.state)) + "\t" + current.state + "\n")
+                fs.close()
 
             if rh.isSolution(current.state):
                 # We found it
                 solution = returnSolutionPath(current)
                 solutionString = solutionAsString(solution)
                 print(solutionString)
-                # TO DO SOLUTION FILE
-                f = open(solFileName, "a")
-                f.write("Runtime: " + str(time.time() - st) + "\n")
-                f.write("Length of search path: " + str(counter) + "\n")
-                f.write("Length of solution path: " + str(len(solution)) + "\n")
-                f.write("Solution path: " + solutionString + "\n\n")
-                for node in solution:
-                    f.write(
-                        node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
 
-                # Final state
-                f.write("\n\n")
-                f.write(current.state[0:6] + "\n")
-                f.write(current.state[6:12] + "\n")
-                f.write(current.state[12:18] + "\n")
-                f.write(current.state[18:24] + "\n")
-                f.write(current.state[24:30] + "\n")
-                f.write(current.state[30:36] + "\n")
-                f.write("\n")
-                f.close()
+                # Only print sol file for demo problems
+                if "demo" in name:
+                    # TO DO SOLUTION FILE
+                    f = open(solFileName, "a")
+                    f.write("Runtime: " + str(time.time() - st) + "\n")
+                    f.write("Length of search path: " + str(counter) + "\n")
+                    f.write("Length of solution path: " + str(len(solution)) + "\n")
+                    f.write("Solution path: " + solutionString + "\n\n")
+                    for node in solution:
+                        f.write(
+                            node.move + "\t" + str(rh.getFuelForCar(node.move[0], node.state)) + "\t" + node.state + "\n")
+
+                    # Final state
+                    f.write("\n\n")
+                    f.write(current.state[0:6] + "\n")
+                    f.write(current.state[6:12] + "\n")
+                    f.write(current.state[12:18] + "\n")
+                    f.write(current.state[18:24] + "\n")
+                    f.write(current.state[24:30] + "\n")
+                    f.write(current.state[30:36] + "\n")
+                    f.write("\n")
+                    f.close()
 
                 # Do this so we stop looking
                 solutionFound = True
@@ -644,12 +668,15 @@ def searchA(name, startState):
                             openList.append(child)
 
         if not solutionFound:
-            # NO solution was found
-            f = open(solFileName, "a")
-            f.write("Runtime: " + str(time.time() - st) + "\n")
-            f.write("Length of search path: " + str(counter) + "\n")
-            f.write("No solution found")
-            f.close()
+
+            # Only print sol file for demo problems
+            if "demo" in name:
+                # NO solution was found
+                f = open(solFileName, "a")
+                f.write("Runtime: " + str(time.time() - st) + "\n")
+                f.write("Length of search path: " + str(counter) + "\n")
+                f.write("No solution found")
+                f.close()
 
             print("no solution")
 

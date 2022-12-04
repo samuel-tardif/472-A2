@@ -1,0 +1,150 @@
+#1
+GGGIIF..JJJF..AA..................BB  F5J4
+
+#2
+..II..........AA...KKK..............  I4
+
+#3
+III..EBB...E..AA..CCC.....HHH..GGG..  G4
+
+#4
+....EE.....IG.AAJIG..KJ....K..BBBK..  B0E1G1I0K1
+
+#5
+III......KK...AA..EFFF..E..GGG......  E3G2K1
+
+#6
+.G.....GHH.I.GAA.I....JI....J.......  I4
+
+#7
+.............AA.CC.EDI...EDI....DI..  
+
+#8
+..E.....EII...AA.C..KK.CHHH..C......  E2H2
+
+#9
+.BB.....III..AA..E.....E.....EJJ....  I3J4
+
+#10
+..F..K..F..KAA....HH.BIG.C.BIG.C..IG  C0G0H5I2
+
+#11
+E.C...E.C.....AA.J.KKDGJ...DGJ...HH.  G3H1
+
+#12
+BHHHK.B...K.AAJ.KE..J..E..J...CCC.FF  C5
+
+#13
+..FF..J..E..JAAE..J..ED.....D.HHH...  E3
+
+#14
+.......BBJ...AAJ.G..CCFG....FH.KKKFH  F5G2H1
+
+#15
+.....J.....J..AA.J.F.....F.EEE...II.  F0J0
+
+#16
+......HHH.....AA.J.DD..J............  
+
+#17
+DD...K...E.K.AAE...FFF..CCC....BB...  C1
+
+#18
+.BB....JJ...AA......F.....F..EDDF..E  B3J5
+
+#19
+FDDD..F....IBAA..IB.....KK........HH  D2H5I2
+
+#20
+.H...KIH.BBKIHAA..I.EEC.....C.....C.  C3E4H3K2
+
+#21
+.DDDKK........AA...FII...FHH...F..EE  E0F0H3
+
+#22
+F.....F..BB.FAADDDIII....K.GGG.K....  F2G1
+
+#23
+.G....EG....E.AA.....III...HHHJJJ...  H2J5
+
+#24
+...BB...DD..AA.GGG.ICK...ICK...I.KFF  C0D0K0
+
+#25
+.....I.....I.AA...K.FF..K....HK....H  H0
+
+#26
+.......K.....KAA...K........JJ......  J5
+
+#27
+......BBBJG..AAJG....JG.FD....FD....  B2D4
+
+#28
+......FF..CCAA.BB........K.....K....  B5C5F2
+
+#29
+.......GG...HAA...H.KK..H...........  H0
+
+#30
+IJCHH.IJC...AACDD...................  C3D0J2
+
+#31
+.H.K.G.H.K.GB.AA..B.J.E.B.J.E.......  B3E0G1K4
+
+#32
+...EE.GGFF.IAAK..I..KCC..DDD....HHH.  C3E2H2K4
+
+#33
+FFFJ.....J...AA.......BKDDD.BK....BK  B3K2
+
+#34
+...FF...JJ....AA.D.III.D.......HHH..  D4I1J5
+
+#35
+.KK..D.GG.CDAA..C..BBFC.I.HF..I.HF..  G3K5
+
+#36
+..DD.....I..AA.I...........EEEBBB...  D5E3I5
+
+#37
+..KKKC.....CAA...CEEE.....III.......  I2
+
+#38
+...JJ....B...AABHD....HD..KK.D......  B4D2H4
+
+#39
+IIGG.BEE...B..AA...CCC.HFF.KKH.....H  F4G4I5
+
+#40
+....DD.......AA.....KKG..FFFGJ.....J  F5G2J4
+
+#41
+.....EI..GGEIHAA...H.....HFF...JJJ..  H4
+
+#42
+..........EEAA...I...DJIFF.DJI...DJ.  F0
+
+#43
+........HHH.AA.EE..J.BB..JGG...J.DDD  B2D1E3G1J5
+
+#44
+.HHH...GG.FB.AA.FBJJ..D..C..D..C..D.  B4
+
+#45
+..HHEE.D....JDAA..J.....II..........  H2
+
+#46
+...JJJ....KK.AAFFD.....D....E.....E.  D0E0J0
+
+#47
+GGGKK.JJ..II.AA...BB...H...DDHCC....  C0D3G5K1
+
+#48
+...I.....I...JAA...J.HHF.....F......  H2
+
+#49
+.....D..GG.D.AA..D....F.....F..EE...  E1F2G1
+
+#50
+........EEEDFFAA.DJ....DJ.......HHH.  D0
+

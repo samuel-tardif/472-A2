@@ -20,9 +20,18 @@ for i, line in enumerate(lines):
 
 
 
-for name in problems:
-#   sa.searchUCS(name, problems[name])
-#   sa.searchGBFS(name, problems[name])
-    sa.searchA(name, problems[name])
+#for name in problems:
+#    sa.searchUCS(name, problems[name])
+#    sa.searchGBFS(name, problems[name])
+#    sa.searchA(name, problems[name])
+
+#Generating random problems
+
+f = open("randomproblems.txt", "w")
+for i in range(0,50):
+    randomProblem = rh.generateRandomProblem()
+    name = str(i+1)
+    f.write("#"+name+"\n"+randomProblem+"\n\n")
+
 
 
